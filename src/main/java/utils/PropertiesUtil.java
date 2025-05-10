@@ -7,19 +7,19 @@ import java.util.Properties;
 @UtilityClass
 public class PropertiesUtil {
 
-    private final String HIBERNATE_PROPERTIES_PATH = "/properties/hibernate.properties";
-    private final String HIKARI_PROPERTIES_PATH = "/properties/hikari.properties";
+    private static final String HIBERNATE_PROPERTIES_PATH = "/properties/hibernate.properties";
+    private static final String HIKARI_PROPERTIES_PATH = "/properties/hikari.properties";
 
-    public Properties getHibernateProperties() {
+    public static Properties getHibernateProperties() {
         return getProperties(HIBERNATE_PROPERTIES_PATH);
     }
 
-    public Properties getHikariProperties() {
+    public static Properties getHikariProperties() {
         return getProperties(HIKARI_PROPERTIES_PATH);
     }
 
     @SneakyThrows
-    private Properties getProperties(String path) {
+    private static Properties getProperties(String path) {
         var properties = new Properties();
 
         properties.load(PropertiesUtil.class.getResourceAsStream(path));
@@ -36,11 +36,11 @@ public class PropertiesUtil {
         return properties;
     }
 
-    private boolean containsEnvironmentVariable(String value) {
+    private static boolean containsEnvironmentVariable(String value) {
         return value.startsWith("${") && value.endsWith("}");
     }
 
-    private String trimPlaceholders(String value) {
+    private static String trimPlaceholders(String value) {
         var startIndex = 2;
         var endIndex = value.length() - 1;
 

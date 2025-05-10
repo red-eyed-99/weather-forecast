@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
@@ -23,6 +24,7 @@ import java.util.Set;
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 @Getter
 public class User {
 
@@ -32,8 +34,8 @@ public class User {
 
     @NaturalId
     @NotBlank
-    @Size(min = 5, max = 20, message = "login length must be between 5 and 20 characters")
-    private String login;
+    @Size(min = 5, max = 20)
+    private String username;
 
     @NotBlank
     @Pattern(regexp = "^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$", message = "password must be encrypted (bcrypt)")
@@ -44,6 +46,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
+    @Builder.Default
     private Set<Location> locations = new HashSet<>();
 
     public void addLocation(Location location) {
