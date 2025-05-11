@@ -18,8 +18,8 @@ public class UsernameValidator implements ConstraintValidator<ValidUsername, Str
             return false;
         }
 
-        if (!username.matches("^[a-zA-Z\\d]{5,20}$")) {
-            setCustomMessage(context, "Username must only consist of latin letters and numbers");
+        if (!username.matches("^[a-zA-Z\\d_]{5,20}$")) {
+            setCustomMessage(context, "Username must only consist of latin letters, numbers and underscores");
             return false;
         }
 

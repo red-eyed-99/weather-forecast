@@ -10,7 +10,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +33,7 @@ public class User {
 
     @NaturalId
     @NotBlank
-    @Size(min = 5, max = 20)
+    @Pattern(regexp = "^[a-zA-Z\\d_]{5,20}$")
     private String username;
 
     @NotBlank
