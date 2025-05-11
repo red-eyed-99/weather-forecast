@@ -21,7 +21,7 @@ public class UserSessionController {
         if (sessionUUID != null && uuidIsValid(sessionUUID)) {
             var sessionId = UUID.fromString(sessionUUID);
 
-            var userSessionDTO = userSessionService.findNotExpiredSession(sessionId);
+            var userSessionDTO = userSessionService.findNotExpiredById(sessionId);
 
             userSessionDTO.ifPresent(sessionDTO -> model.addAttribute(USER_SESSION, sessionDTO));
         }

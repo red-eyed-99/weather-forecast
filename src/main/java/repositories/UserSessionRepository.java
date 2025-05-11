@@ -14,8 +14,12 @@ public class UserSessionRepository {
 
     private final Session session;
 
-    public Optional<UserSessionDTO> findById(UUID id) {
-        var hql = "select us.id, us.expiresAt, u.id from UserSession us join us.user u where us.id = :id";
+    public Optional<UserSessionDTO> findNotExpiredById(UUID id) {
+        var hql = """
+                select us.id, us.expiresAt, u.id
+                from UserSession us join us.user u
+                where us.id = :id and us.expiresAt > current_timestamp
+                """;
 
         return session.createQuery(hql, UserSessionDTO.class)
                 .setParameter("id", id)

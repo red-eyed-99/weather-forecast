@@ -17,14 +17,9 @@ public class UserSessionService {
     private final UserSessionRepository userSessionRepository;
 
     @Transactional(readOnly = true)
-    public Optional<UserSessionDTO> findNotExpiredSession(UUID sessionUUID) {
-        var userSessionDTO = userSessionRepository.findById(sessionUUID);
-
-        if (userSessionDTO.isPresent()) {
-            if (!isExpired(userSessionDTO.get())) {
-                return userSessionDTO;
-            }
-        }
+    public Optional<UserSessionDTO> findNotExpiredById(UUID id) {
+        return userSessionRepository.findNotExpiredById(id);
+    }
 
         return Optional.empty();
     }
