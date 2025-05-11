@@ -26,7 +26,8 @@ public class UserSessionRepository {
                 .uniqueResultOptional();
     }
 
-    public void save(UserSession userSession) {
+    public UserSession save(UserSession userSession) {
         session.persist(userSession);
+        return userSession;
     }
 }

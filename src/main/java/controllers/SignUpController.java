@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import services.UserService;
+import utils.CookieUtil;
 import utils.PasswordEncoder;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
@@ -53,7 +54,9 @@ public class SignUpController {
 
         var userSession = userService.signUp(signUpUserDTO);
 
-        userService.signUp(signUpUserDTO);
+        CookieUtil.addUserSessionCookie(userSession, response);
+
+        model.addAttribute(USER_SESSION, userSession);
 
         return REDIRECT_HOME;
     }

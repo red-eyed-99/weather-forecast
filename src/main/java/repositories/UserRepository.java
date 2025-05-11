@@ -11,7 +11,8 @@ public class UserRepository {
 
     private final Session session;
 
-    public void save(User user) {
+    public User save(User user) {
         session.persist(user);
+        return user;
     }
 }

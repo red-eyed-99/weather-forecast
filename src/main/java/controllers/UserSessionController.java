@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import services.UserSessionService;
 import java.util.UUID;
 
+import static utils.CookieUtil.USER_SESSION_COOKIE;
 import static utils.ModelAttributeUtil.USER_SESSION;
 
 @ControllerAdvice
@@ -17,7 +18,7 @@ public class UserSessionController {
     private final UserSessionService userSessionService;
 
     @ModelAttribute
-    public void addUserSession(Model model, @CookieValue(value = "user_session", required = false) String sessionUUID) {
+    public void addUserSession(Model model, @CookieValue(value = USER_SESSION_COOKIE, required = false) String sessionUUID) {
         if (sessionUUID != null && uuidIsValid(sessionUUID)) {
             var sessionId = UUID.fromString(sessionUUID);
 
