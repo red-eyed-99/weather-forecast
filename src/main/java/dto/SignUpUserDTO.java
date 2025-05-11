@@ -18,18 +18,22 @@ public class SignUpUserDTO {
 
     private String repeatPassword;
 
+    private boolean passwordEncrypted = false;
+
     @ConstructorProperties({"username", "password", "repeatPassword"})
     public SignUpUserDTO(String username, String password, String repeatPassword) {
         this.username = username.trim();
+        this.password = password.trim();
+        this.repeatPassword = repeatPassword.trim();
+    }
+
+    public void setEncryptedPassword(String password) {
+        if (passwordEncrypted) {
+            throw new IllegalStateException("Password already encrypted and cannot be changed.");
+        }
+
         this.password = password;
-        this.repeatPassword = repeatPassword;
-    }
-
-    public void setPassword(String password) {
-        this.password = password != null ? password.trim() : null;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword != null ? repeatPassword.trim() : null;
+        this.repeatPassword = password;
+        this.passwordEncrypted = true;
     }
 }

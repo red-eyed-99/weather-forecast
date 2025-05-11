@@ -49,7 +49,9 @@ public class SignUpController {
             return SIGN_UP;
         }
 
-        encodePasswords(signUpUserDTO);
+        encodePassword(signUpUserDTO);
+
+        var userSession = userService.signUp(signUpUserDTO);
 
         userService.signUp(signUpUserDTO);
 
@@ -62,11 +64,8 @@ public class SignUpController {
         model.addAttribute(REPEAT_PASSWORD_ERROR, bindingResult.getFieldError("repeatPassword"));
     }
 
-    private void encodePasswords(SignUpUserDTO signUpUserDTO) {
+    private void encodePassword(SignUpUserDTO signUpUserDTO) {
         var encodedPassword = PasswordEncoder.encode(signUpUserDTO.getPassword());
-        var encodedRepeatPassword = PasswordEncoder.encode(signUpUserDTO.getRepeatPassword());
-
-        signUpUserDTO.setPassword(encodedPassword);
-        signUpUserDTO.setRepeatPassword(encodedRepeatPassword);
+        signUpUserDTO.setEncryptedPassword(encodedPassword);
     }
 }
