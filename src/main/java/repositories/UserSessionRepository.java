@@ -30,4 +30,8 @@ public class UserSessionRepository {
         session.persist(userSession);
         return userSession;
     }
+
+    public void delete(UserSession userSession) {
+        session.remove(userSession);
+    }
 }
