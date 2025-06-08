@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 @ComponentScan("controllers")
@@ -45,7 +46,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         var thymeleafViewResolver = new ThymeleafViewResolver();
 
+        var characterEncoding = StandardCharsets.UTF_8.name();
+
         thymeleafViewResolver.setTemplateEngine(templateEngine());
+        thymeleafViewResolver.setCharacterEncoding(characterEncoding);
 
         registry.viewResolver(thymeleafViewResolver);
     }
