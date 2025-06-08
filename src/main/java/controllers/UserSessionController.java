@@ -19,7 +19,7 @@ public class UserSessionController {
 
     @ModelAttribute
     public void addUserSession(Model model, @CookieValue(value = USER_SESSION_COOKIE, required = false) String sessionUUID) {
-        if (sessionUUID != null && uuidIsValid(sessionUUID)) {
+        if (sessionUUID != null && uuidIsValid(sessionUUID) && !model.containsAttribute(USER_SESSION)) {
             var sessionId = UUID.fromString(sessionUUID);
 
             var userSessionDTO = userSessionService.findNotExpiredById(sessionId);
