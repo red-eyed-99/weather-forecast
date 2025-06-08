@@ -31,4 +31,13 @@ public class CookieUtil {
         var expires = expiresAt.atZone(ZoneOffset.UTC);
         return (int) Duration.between(now, expires).getSeconds();
     }
+
+    public static void deleteUserSessionCookie(HttpServletResponse response) {
+        var cookie = new Cookie(USER_SESSION_COOKIE, null);
+
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+
+        response.addCookie(cookie);
+    }
 }
