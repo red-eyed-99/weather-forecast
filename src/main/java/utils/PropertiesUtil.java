@@ -9,16 +9,16 @@ public class PropertiesUtil {
 
     private static final String HIBERNATE_PROPERTIES_PATH = "/properties/hibernate.properties";
     private static final String HIKARI_PROPERTIES_PATH = "/properties/hikari.properties";
-    private static final String USER_SESSION_PROPERTIES_PATH = "/properties/user_session.properties";
+    private static final String APPLICATION_PROPERTIES_PATH = "/properties/application.properties";
 
     private static final Properties HIBERNATE_PROPERTIES;
     private static final Properties HIKARI_PROPERTIES;
-    private static final Properties USER_SESSION_PROPERTIES;
+    private static final Properties APPLICATION_PROPERTIES;
 
     static {
         HIBERNATE_PROPERTIES = initProperties(HIBERNATE_PROPERTIES_PATH);
         HIKARI_PROPERTIES = initProperties(HIKARI_PROPERTIES_PATH);
-        USER_SESSION_PROPERTIES = initProperties(USER_SESSION_PROPERTIES_PATH);
+        APPLICATION_PROPERTIES = initProperties(APPLICATION_PROPERTIES_PATH);
     }
 
     public static Properties getHibernateProperties() {
@@ -27,10 +27,6 @@ public class PropertiesUtil {
 
     public static Properties getHikariProperties() {
         return getPropertiesCopy(HIKARI_PROPERTIES);
-    }
-
-    public static Properties getUserSessionProperties() {
-        return getPropertiesCopy(USER_SESSION_PROPERTIES);
     }
 
     @SneakyThrows

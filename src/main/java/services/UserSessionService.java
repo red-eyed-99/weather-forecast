@@ -14,11 +14,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@PropertySource("classpath:/properties/user_session.properties")
+@PropertySource("classpath:/properties/application.properties")
 @RequiredArgsConstructor
 public class UserSessionService {
 
-    @Value("${lifetime-days}")
+    @Value("${userSession.lifetime-days}")
     private long sessionLifetime;
 
     private final UserSessionRepository userSessionRepository;
