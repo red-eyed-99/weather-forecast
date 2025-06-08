@@ -1,9 +1,12 @@
 package services;
 
 import dto.SignUpUserDTO;
+import exception.NotFoundException;
+import exception.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import mappers.UserMapper;
-import models.entities.UserSession;
+import models.entities.User;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repositories.UserRepository;
@@ -16,14 +19,20 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    private final UserSessionService userSessionService;
+    @Transactional(readOnly = true)
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+    }
 
     @Transactional
-    public UserSession signUp(SignUpUserDTO signUpUserDTO) {
+    public User save(SignUpUserDTO signUpUserDTO) {
         var user = userMapper.toUser(signUpUserDTO);
 
-        user = userRepository.save(user);
-
-        return userSessionService.createUserSession(user);
+        try {
+            return userRepository.save(user);
+        } catch (ConstraintViolationException exception) {
+            throw new UserAlreadyExistException();
+        }
     }
 }
