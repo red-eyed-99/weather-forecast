@@ -5,9 +5,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import validation.annotations.PasswordMatches;
 
-public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, SignUpUserDTO> {
+import static utils.FieldErrorUtil.REPEAT_PASSWORD;
 
-    private static final String REPEAT_PASSWORD_FIELD_NAME = "repeatPassword";
+public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, SignUpUserDTO> {
 
     @Override
     public boolean isValid(SignUpUserDTO signUpUserDTO, ConstraintValidatorContext context) {
@@ -32,14 +32,14 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(defaultMessage)
-                .addPropertyNode(REPEAT_PASSWORD_FIELD_NAME)
+                .addPropertyNode(REPEAT_PASSWORD)
                 .addConstraintViolation();
     }
 
     private void setCustomConstraintViolation(ConstraintValidatorContext context, String message) {
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(message)
-                .addPropertyNode(REPEAT_PASSWORD_FIELD_NAME)
+                .addPropertyNode(REPEAT_PASSWORD)
                 .addConstraintViolation();
     }
 }
