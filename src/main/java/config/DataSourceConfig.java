@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.context.WebApplicationContext;
 import utils.PropertiesUtil;
 import javax.sql.DataSource;
 
@@ -42,7 +41,7 @@ public class DataSourceConfig {
     }
 
     @Bean
-    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Session session(SessionFactory sessionFactory) {
         return sessionFactory.getCurrentSession();
     }
