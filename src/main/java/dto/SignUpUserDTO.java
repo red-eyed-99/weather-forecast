@@ -6,6 +6,10 @@ import validation.annotations.ValidPassword;
 import validation.annotations.ValidUsername;
 import java.beans.ConstructorProperties;
 
+import static utils.FieldErrorUtil.PASSWORD;
+import static utils.FieldErrorUtil.REPEAT_PASSWORD;
+import static utils.FieldErrorUtil.USERNAME;
+
 @Getter
 @PasswordMatches
 public class SignUpUserDTO {
@@ -20,7 +24,7 @@ public class SignUpUserDTO {
 
     private boolean passwordEncrypted = false;
 
-    @ConstructorProperties({"username", "password", "repeatPassword"})
+    @ConstructorProperties({USERNAME, PASSWORD, REPEAT_PASSWORD})
     public SignUpUserDTO(String username, String password, String repeatPassword) {
         this.username = username.trim();
         this.password = password.trim();

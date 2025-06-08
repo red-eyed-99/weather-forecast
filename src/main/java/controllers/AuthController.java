@@ -3,7 +3,7 @@ package controllers;
 import dto.SignInUserDTO;
 import dto.SignUpUserDTO;
 import dto.UserSessionDTO;
-import exception.UserAlreadyExistException;
+import exceptions.UserAlreadyExistException;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

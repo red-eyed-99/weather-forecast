@@ -1,7 +1,7 @@
 package controllers;
 
 import dto.SignInUserDTO;
-import exception.BadCredentialsException;
+import exceptions.BadCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

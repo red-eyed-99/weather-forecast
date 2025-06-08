@@ -1,8 +1,8 @@
 package services;
 
 import dto.SignUpUserDTO;
-import exception.NotFoundException;
-import exception.UserAlreadyExistException;
+import exceptions.NotFoundException;
+import exceptions.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import mappers.UserMapper;
 import models.entities.User;
