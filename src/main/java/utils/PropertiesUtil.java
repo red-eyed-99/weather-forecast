@@ -1,5 +1,6 @@
 package utils;
 
+import exceptions.EnvironmentVariableProcessException;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import java.util.Properties;
@@ -40,6 +41,11 @@ public class PropertiesUtil {
 
             if (containsEnvironmentVariable(propertyValue)) {
                 propertyValue = System.getenv(trimPlaceholders(propertyValue));
+
+                if (propertyValue == null) {
+                    throw new EnvironmentVariableProcessException(property.getValue().toString());
+                }
+
                 properties.put(property.getKey(), propertyValue);
             }
         }
