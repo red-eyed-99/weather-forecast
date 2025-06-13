@@ -6,9 +6,9 @@ import validation.annotations.ValidPassword;
 import validation.annotations.ValidUsername;
 import java.beans.ConstructorProperties;
 
-import static utils.FieldErrorUtil.PASSWORD;
-import static utils.FieldErrorUtil.REPEAT_PASSWORD;
-import static utils.FieldErrorUtil.USERNAME;
+import static dto.SignUpUserDTO.Fields.PASSWORD;
+import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.SignUpUserDTO.Fields.USERNAME;
 
 @Getter
 @PasswordMatches
@@ -39,5 +39,11 @@ public class SignUpUserDTO {
         this.password = password;
         this.repeatPassword = password;
         this.passwordEncrypted = true;
+    }
+
+    public static final class Fields {
+        public static final String USERNAME = "username";
+        public static final String PASSWORD = "password";
+        public static final String REPEAT_PASSWORD = "repeatPassword";
     }
 }

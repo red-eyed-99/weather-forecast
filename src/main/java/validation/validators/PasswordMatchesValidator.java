@@ -5,7 +5,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import validation.annotations.PasswordMatches;
 
-import static utils.FieldErrorUtil.REPEAT_PASSWORD;
+import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, SignUpUserDTO> {
 

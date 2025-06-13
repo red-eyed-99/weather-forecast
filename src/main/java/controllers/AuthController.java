@@ -14,11 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import services.AuthService;
 import utils.CookieUtil;
 import utils.PasswordEncoder;
 
+import static dto.SignUpUserDTO.Fields.PASSWORD;
+import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.SignUpUserDTO.Fields.USERNAME;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_CONFLICT;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
@@ -47,7 +49,6 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    @ResponseStatus(CREATED)
     public String signUp(Model model, @ModelAttribute(USER) @Valid SignUpUserDTO signUpUserDTO,
                          BindingResult bindingResult, HttpServletResponse response) {
 
