@@ -31,7 +31,11 @@ public class UserSessionRepository {
         return userSession;
     }
 
-    public void delete(UserSession userSession) {
-        session.remove(userSession);
+    public void deleteById(UUID id) {
+        var hql = "delete from UserSession us where us.id = :id";
+
+        session.createMutationQuery(hql)
+                .setParameter("id", id)
+                .executeUpdate();
     }
 }
