@@ -20,10 +20,7 @@ import utils.CookieUtil;
 import utils.PasswordEncoder;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static org.springframework.http.HttpStatus.CREATED;
-import static utils.FieldErrorUtil.PASSWORD;
-import static utils.FieldErrorUtil.REPEAT_PASSWORD;
-import static utils.FieldErrorUtil.USERNAME;
+import static jakarta.servlet.http.HttpServletResponse.SC_CONFLICT;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.PASSWORD_ERROR;
 import static utils.ModelAttributeUtil.REPEAT_PASSWORD_ERROR;
@@ -69,8 +66,8 @@ public class AuthController {
         try {
             userSession = authService.signUp(signUpUserDTO);
         } catch (UserAlreadyExistException exception) {
-            model.addAttribute(ERROR_MESSAGE, UserAlreadyExistException.MESSAGE);
-            response.setStatus(UserAlreadyExistException.HTTP_STATUS_CODE);
+            model.addAttribute(ERROR_MESSAGE, exception.getMessage());
+            response.setStatus(SC_CONFLICT);
             return SIGN_UP;
         }
 
