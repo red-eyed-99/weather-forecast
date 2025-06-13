@@ -1,7 +1,6 @@
 <configuration>
     <logger name="org.hibernate.engine.jdbc.spi.SqlExceptionHelper" level="OFF"/>
-    <logger name="org.springframework.jdbc" level="ERROR"/>
-    <logger name="org.hibernate.SQL" level="OFF"/>
+    <logger name="org.springframework.web.servlet.PageNotFound" level="OFF"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
