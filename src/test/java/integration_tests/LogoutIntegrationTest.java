@@ -30,7 +30,7 @@ class LogoutIntegrationTest {
     @Test
     @DisplayName(value = "User session exists")
     @Sql(scripts = {INSERT_USER, INSERT_SESSION})
-    public void shouldSuccessfullyLogoutUser() {
+    void shouldSuccessfullyLogoutUser() {
         var sessionId = UUID.fromString(USER_SESSION_ID);
         var userSessionDtoOptional = userSessionService.findNotExpiredById(sessionId);
         var userSessionDto = userSessionDtoOptional.orElseThrow();

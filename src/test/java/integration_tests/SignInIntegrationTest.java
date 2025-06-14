@@ -25,7 +25,7 @@ class SignInIntegrationTest {
     @Test
     @DisplayName(value = "User exists")
     @Sql(scripts = INSERT_USER)
-    public void shouldSuccessfullyLoginUser() {
+    void shouldSuccessfullyLoginUser() {
         var username = "dummy";
         var signInUserDto = new SignInUserDTO(username, "dummy");
 
@@ -37,7 +37,7 @@ class SignInIntegrationTest {
 
     @Test
     @DisplayName(value = "User doesn't exist")
-    public void userDoesNotExist_throwsBadCredentialsException() {
+    void userDoesNotExist_throwsBadCredentialsException() {
         var signInUserDto = new SignInUserDTO("dummy", "dummy");
         assertThrows(BadCredentialsException.class, () -> authService.signIn(signInUserDto));
     }
@@ -45,7 +45,7 @@ class SignInIntegrationTest {
     @Test
     @DisplayName(value = "Incorrect user password")
     @Sql(scripts = INSERT_USER)
-    public void incorrectUserPassword_throwsBadCredentialsException() {
+    void incorrectUserPassword_throwsBadCredentialsException() {
         var signInUserDto = new SignInUserDTO("dummy", "incorrectPassword");
         assertThrows(BadCredentialsException.class, () -> authService.signIn(signInUserDto));
     }
