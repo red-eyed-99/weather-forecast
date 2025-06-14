@@ -12,7 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
 
-        <spring.version>6.2.7</spring.version>
+        <spring.version>6.2.8</spring.version>
         <hibernate.version>6.6.13.Final</hibernate.version>
         <flyway.version>11.8.1</flyway.version>
         <lombok.version>1.18.38</lombok.version>
@@ -63,6 +63,13 @@
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.1.0</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>4.0.2</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
