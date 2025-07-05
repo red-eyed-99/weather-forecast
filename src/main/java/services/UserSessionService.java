@@ -1,6 +1,6 @@
 package services;
 
-import dto.UserSessionDTO;
+import dto.auth.UserSessionDTO;
 import lombok.RequiredArgsConstructor;
 import models.entities.User;
 import models.entities.UserSession;

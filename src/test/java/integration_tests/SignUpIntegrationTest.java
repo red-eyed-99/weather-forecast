@@ -1,7 +1,7 @@
 package integration_tests;
 
 import annotations.IntegrationTest;
-import dto.SignUpUserDTO;
+import dto.auth.SignUpUserDTO;
 import exceptions.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;

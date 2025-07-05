@@ -1,6 +1,6 @@
 package controllers;
 
-import dto.SignInUserDTO;
+import dto.auth.SignInUserDTO;
 import exceptions.BadCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;

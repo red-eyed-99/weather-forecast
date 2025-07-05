@@ -1,6 +1,6 @@
 package unit_tests;
 
-import dto.SignInUserDTO;
+import dto.auth.SignInUserDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

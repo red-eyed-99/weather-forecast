@@ -1,6 +1,6 @@
 package services;
 
-import dto.SignUpUserDTO;
+import dto.auth.SignUpUserDTO;
 import exceptions.NotFoundException;
 import exceptions.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;

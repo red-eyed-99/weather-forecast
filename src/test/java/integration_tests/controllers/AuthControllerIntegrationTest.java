@@ -1,8 +1,8 @@
 package integration_tests.controllers;
 
 import annotations.WebIntegrationTest;
-import dto.SignInUserDTO;
-import dto.SignUpUserDTO;
+import dto.auth.SignInUserDTO;
+import dto.auth.SignUpUserDTO;
 import exceptions.BadCredentialsException;
 import exceptions.UserAlreadyExistException;
 import jakarta.servlet.http.Cookie;
@@ -28,9 +28,9 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import static dto.SignUpUserDTO.Fields.PASSWORD;
-import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
-import static dto.SignUpUserDTO.Fields.USERNAME;
+import static dto.auth.SignUpUserDTO.Fields.PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.USERNAME;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;

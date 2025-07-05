@@ -1,7 +1,7 @@
 package integration_tests;
 
 import annotations.IntegrationTest;
-import dto.SignInUserDTO;
+import dto.auth.SignInUserDTO;
 import exceptions.BadCredentialsException;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;

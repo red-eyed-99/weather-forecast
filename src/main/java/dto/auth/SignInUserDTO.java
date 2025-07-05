@@ -1,4 +1,4 @@
-package dto;
+package dto.auth;
 
 import validation.annotations.ValidPassword;
 import validation.annotations.ValidUsername;

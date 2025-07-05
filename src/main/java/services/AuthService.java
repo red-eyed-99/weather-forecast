@@ -1,8 +1,8 @@
 package services;
 
-import dto.SignInUserDTO;
-import dto.SignUpUserDTO;
-import dto.UserSessionDTO;
+import dto.auth.SignInUserDTO;
+import dto.auth.SignUpUserDTO;
+import dto.auth.UserSessionDTO;
 import exceptions.BadCredentialsException;
 import exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;

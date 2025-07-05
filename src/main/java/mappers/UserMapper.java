@@ -1,6 +1,6 @@
 package mappers;
 
-import dto.SignUpUserDTO;
+import dto.auth.SignUpUserDTO;
 import models.entities.User;
 import org.mapstruct.Mapper;
 

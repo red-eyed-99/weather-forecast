@@ -1,11 +1,11 @@
 package validation.validators;
 
-import dto.SignUpUserDTO;
+import dto.auth.SignUpUserDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import validation.annotations.PasswordMatches;
 
-import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.REPEAT_PASSWORD;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, SignUpUserDTO> {
 

@@ -1,4 +1,4 @@
-package dto;
+package dto.auth;
 
 import lombok.Getter;
 import validation.annotations.PasswordMatches;
@@ -6,9 +6,9 @@ import validation.annotations.ValidPassword;
 import validation.annotations.ValidUsername;
 import java.beans.ConstructorProperties;
 
-import static dto.SignUpUserDTO.Fields.PASSWORD;
-import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
-import static dto.SignUpUserDTO.Fields.USERNAME;
+import static dto.auth.SignUpUserDTO.Fields.PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.USERNAME;
 
 @Getter
 @PasswordMatches

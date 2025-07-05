@@ -1,6 +1,6 @@
 package unit_tests;
 
-import dto.SignUpUserDTO;
+import dto.auth.SignUpUserDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.PasswordEncoder;

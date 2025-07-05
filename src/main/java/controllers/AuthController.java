@@ -1,8 +1,8 @@
 package controllers;
 
-import dto.SignInUserDTO;
-import dto.SignUpUserDTO;
-import dto.UserSessionDTO;
+import dto.auth.SignInUserDTO;
+import dto.auth.SignUpUserDTO;
+import dto.auth.UserSessionDTO;
 import exceptions.UserAlreadyExistException;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -18,9 +18,9 @@ import services.AuthService;
 import utils.CookieUtil;
 import utils.PasswordEncoder;
 
-import static dto.SignUpUserDTO.Fields.PASSWORD;
-import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
-import static dto.SignUpUserDTO.Fields.USERNAME;
+import static dto.auth.SignUpUserDTO.Fields.PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.USERNAME;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_CONFLICT;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;

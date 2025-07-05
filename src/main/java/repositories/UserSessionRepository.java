@@ -1,6 +1,6 @@
 package repositories;
 
-import dto.UserSessionDTO;
+import dto.auth.UserSessionDTO;
 import lombok.RequiredArgsConstructor;
 import models.entities.UserSession;
 import org.hibernate.Session;

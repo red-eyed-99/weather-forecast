@@ -5,9 +5,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static dto.SignUpUserDTO.Fields.PASSWORD;
-import static dto.SignUpUserDTO.Fields.REPEAT_PASSWORD;
-import static dto.SignUpUserDTO.Fields.USERNAME;
+import static dto.auth.SignUpUserDTO.Fields.PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.REPEAT_PASSWORD;
+import static dto.auth.SignUpUserDTO.Fields.USERNAME;
 import static utils.ModelAttributeUtil.PASSWORD_ERROR;
 import static utils.ModelAttributeUtil.REPEAT_PASSWORD_ERROR;
 import static utils.ModelAttributeUtil.USERNAME_ERROR;
