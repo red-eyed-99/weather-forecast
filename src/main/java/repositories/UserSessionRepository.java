@@ -38,4 +38,11 @@ public class UserSessionRepository {
                 .setParameter("id", id)
                 .executeUpdate();
     }
+
+    public void deleteAllExpired() {
+        var hql = "delete from UserSession us where us.expiresAt < current_timestamp";
+
+        session.createMutationQuery(hql)
+                .executeUpdate();
+    }
 }
