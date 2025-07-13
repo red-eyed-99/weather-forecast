@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repositories.UserSessionRepository;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,6 +32,11 @@ public class UserSessionService {
     @Transactional(readOnly = true)
     public Optional<UserSessionDTO> findNotExpiredById(UUID id) {
         return userSessionRepository.findNotExpiredById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UUID> findAllSessionIds() {
+        return userSessionRepository.findAllSessionIds();
     }
 
     @Transactional

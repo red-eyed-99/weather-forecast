@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import models.entities.UserSession;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,5 +45,12 @@ public class UserSessionRepository {
 
         session.createMutationQuery(hql)
                 .executeUpdate();
+    }
+
+    public List<UUID> findAllSessionIds() {
+        var hql = "select id from UserSession";
+
+        return session.createQuery(hql, UUID.class)
+                .getResultList();
     }
 }

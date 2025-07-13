@@ -1,0 +1,10 @@
+INSERT INTO sessions
+VALUES
+    -- expired
+    ('c9df446d-211b-4a55-8e86-20a0479c2b16', 1, CURRENT_TIMESTAMP - INTERVAL '3' DAY),
+    ('82f9133c-e74e-43a2-a6cc-094ab39c6ba6', 1, CURRENT_TIMESTAMP - INTERVAL '3' DAY),
+    ('1a9eb72e-27e4-4b10-aab3-ca8cab761b04', 1, CURRENT_TIMESTAMP - INTERVAL '3' DAY),
+    -- not expired
+    ('04f96dd2-5cc1-40af-b219-b0abfbd0a1df', 1, CURRENT_TIMESTAMP + INTERVAL '3' DAY),
+    ('450c3bda-ac47-47a9-8bf9-7b23e1f51d8a', 1, CURRENT_TIMESTAMP + INTERVAL '3' DAY),
+    ('5588cf8b-0074-4df9-ade2-c8bdb2da0c02', 1, CURRENT_TIMESTAMP + INTERVAL '3' DAY);
