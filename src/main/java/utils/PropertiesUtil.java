@@ -5,6 +5,10 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import java.util.Properties;
 
+import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
+import static org.springframework.util.SystemPropertyUtils.PLACEHOLDER_PREFIX;
+import static org.springframework.util.SystemPropertyUtils.PLACEHOLDER_SUFFIX;
+
 @UtilityClass
 public class PropertiesUtil {
 
@@ -15,6 +19,8 @@ public class PropertiesUtil {
     private static final Properties HIBERNATE_PROPERTIES;
     private static final Properties HIKARI_PROPERTIES;
     private static final Properties APPLICATION_PROPERTIES;
+
+    public static final String APPLICATION_PROPERTIES_CLASSPATH = CLASSPATH_URL_PREFIX + APPLICATION_PROPERTIES_PATH;
 
     static {
         HIBERNATE_PROPERTIES = initProperties(HIBERNATE_PROPERTIES_PATH);
@@ -54,7 +60,7 @@ public class PropertiesUtil {
     }
 
     private static boolean containsEnvironmentVariable(String value) {
-        return value.startsWith("${") && value.endsWith("}");
+        return value.startsWith(PLACEHOLDER_PREFIX) && value.endsWith(PLACEHOLDER_SUFFIX);
     }
 
     private static String trimPlaceholders(String value) {

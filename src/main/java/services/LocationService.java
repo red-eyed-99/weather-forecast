@@ -13,8 +13,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
+import static utils.PropertiesUtil.APPLICATION_PROPERTIES_CLASSPATH;
+
 @Service
-@PropertySource("classpath:/properties/application.properties")
+@PropertySource(APPLICATION_PROPERTIES_CLASSPATH)
 @RequiredArgsConstructor
 @Slf4j
 public class LocationService {

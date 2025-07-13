@@ -4,6 +4,8 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import java.util.Properties;
 
+import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
+
 @UtilityClass
 public class TestPropertiesUtil {
 
@@ -12,6 +14,8 @@ public class TestPropertiesUtil {
 
     private static final Properties TEST_PROPERTIES;
     private static final Properties HIBERNATE_PROPERTIES;
+
+    public static final String TEST_PROPERTIES_CLASSPATH = CLASSPATH_URL_PREFIX + TEST_PROPERTIES_PATH;
 
     static {
         TEST_PROPERTIES = initProperties(TEST_PROPERTIES_PATH);

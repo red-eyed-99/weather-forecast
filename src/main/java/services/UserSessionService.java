@@ -13,8 +13,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static utils.PropertiesUtil.APPLICATION_PROPERTIES_CLASSPATH;
+
 @Service
-@PropertySource("classpath:/properties/application.properties")
+@PropertySource(APPLICATION_PROPERTIES_CLASSPATH)
 @RequiredArgsConstructor
 public class UserSessionService {
 

@@ -2,6 +2,8 @@ package utils;
 
 import lombok.experimental.UtilityClass;
 
+import static org.springframework.web.servlet.view.UrlBasedViewResolver.REDIRECT_URL_PREFIX;
+
 @UtilityClass
 public class PagesUtil {
 
@@ -12,5 +14,5 @@ public class PagesUtil {
 
     public static final String SEARCH_LOCATIONS = "search-locations/search-locations";
 
-    public static final String REDIRECT_HOME = "redirect:/";
+    public static final String REDIRECT_HOME = REDIRECT_URL_PREFIX + "/";
 }

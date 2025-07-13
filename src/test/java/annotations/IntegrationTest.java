@@ -14,12 +14,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static utils.TestPropertiesUtil.TEST_PROPERTIES_CLASSPATH;
+
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {ApplicationConfig.class, TestDataSourceConfig.class, TestFlywayConfig.class})
-@TestPropertySource("classpath:/properties/application-test.properties")
+@TestPropertySource(TEST_PROPERTIES_CLASSPATH)
 @Transactional
 public @interface IntegrationTest {
 }
