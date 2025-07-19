@@ -42,6 +42,18 @@ public class LocationService {
         return getWeatherResponseDto(uri);
     }
 
+    public WeatherResponseDTO getWeatherInfo(CoordinatesDTO coordinatesDTO) {
+        var uri = UriComponentsBuilder.newInstance()
+                .uri(URI.create(openWeatherUrl))
+                .queryParam("lat", coordinatesDTO.latitude())
+                .queryParam("lon", coordinatesDTO.longitude())
+                .queryParam("units", UNIT_OF_MEASUREMENT)
+                .queryParam("appid", openWeatherKey)
+                .toUriString();
+
+        return getWeatherResponseDto(uri);
+    }
+
     private WeatherResponseDTO getWeatherResponseDto(String uri) {
         var weatherResponseDTO = (WeatherResponseDTO) null;
 
