@@ -1,6 +1,7 @@
 package services;
 
 import dto.auth.SignUpUserDTO;
+import dto.openweather.CoordinatesDTO;
 import exceptions.NotFoundException;
 import exceptions.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ import repositories.UserRepository;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+    private final LocationService locationService;
+
+    private final UserLocationService userLocationService;
 
     private final UserRepository userRepository;
 
@@ -34,5 +39,19 @@ public class UserService {
         } catch (ConstraintViolationException exception) {
             throw new UserAlreadyExistException();
         }
+    }
+
+    public void addLocation(Long userId, CoordinatesDTO coordinatesDTO) {
+        var locationIdOptional = locationService.findLocationId(coordinatesDTO);
+        var locationId = (Long) null;
+
+        if (locationIdOptional.isPresent()) {
+            locationId = locationIdOptional.get();
+        } else {
+            var location = locationService.addLocation(coordinatesDTO);
+            locationId = location.getId();
+        }
+
+        userLocationService.addLocationToUser(locationId, userId);
     }
 }
