@@ -1,17 +1,22 @@
 package services;
 
+import dto.openweather.CoordinatesDTO;
 import dto.openweather.WeatherResponseDTO;
 import exceptions.NotFoundException;
 import exceptions.OpenWeatherException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import models.entities.Location;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import repositories.LocationRepository;
 import java.net.URI;
+import java.util.Optional;
 
 import static utils.PropertiesUtil.APPLICATION_PROPERTIES_CLASSPATH;
 
@@ -30,6 +35,8 @@ public class LocationService {
     private String openWeatherKey;
 
     private final RestTemplate restTemplate;
+
+    private final LocationRepository locationRepository;
 
     public WeatherResponseDTO getWeatherInfo(String locationName) {
         var uri = UriComponentsBuilder.newInstance()
@@ -73,5 +80,27 @@ public class LocationService {
         }
 
         return weatherResponseDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Long> findLocationId(CoordinatesDTO coordinatesDTO) {
+        var latitude = coordinatesDTO.latitude();
+        var longitude = coordinatesDTO.longitude();
+        return locationRepository.findLocationId(latitude, longitude);
+    }
+
+    @Transactional
+    public Location addLocation(CoordinatesDTO coordinatesDTO) {
+        var weatherResponseDTO = getWeatherInfo(coordinatesDTO);
+
+        var locationName = weatherResponseDTO.locationDto().name();
+
+        var location = Location.builder()
+                .name(locationName)
+                .latitude(coordinatesDTO.latitude())
+                .longitude(coordinatesDTO.longitude())
+                .build();
+
+        return locationRepository.save(location);
     }
 }
