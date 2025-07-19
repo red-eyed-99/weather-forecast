@@ -5,12 +5,13 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import dto.openweather.LocationInfo;
-import dto.openweather.TemperatureInfo;
+import dto.openweather.CoordinatesDTO;
+import dto.openweather.LocationDTO;
+import dto.openweather.TemperatureDTO;
+import dto.openweather.WeatherDTO;
 import dto.openweather.WeatherGroup;
-import dto.openweather.WeatherInfo;
 import dto.openweather.WeatherResponseDTO;
-import dto.openweather.WindInfo;
+import dto.openweather.WindDTO;
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -18,15 +19,24 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
 
     @Override
     public WeatherResponseDTO deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
-        var jsonNode = (JsonNode) jsonParser.getCodec().readTree(jsonParser);
+        var jsonNode = (JsonNode) jsonParser.getCodec()
+                .readTree(jsonParser);
 
-        var locationInfo = getLocationInfo(jsonNode);
-        var weatherInfo = getWeatherInfo(jsonNode);
+        var locationDto = getLocationDto(jsonNode);
+        var weatherDto = getWeatherDto(jsonNode);
 
-        return new WeatherResponseDTO(locationInfo, weatherInfo);
+        return new WeatherResponseDTO(locationDto, weatherDto);
     }
 
-    private LocationInfo getLocationInfo(JsonNode jsonNode) {
+    private LocationDTO getLocationDto(JsonNode jsonNode) {
+        var coordinatesDto = getCoordinatesDto(jsonNode);
+        var country = jsonNode.path("sys").path("country").asText();
+        var name = jsonNode.path("name").asText();
+
+        return new LocationDTO(coordinatesDto, country, name);
+    }
+
+    private CoordinatesDTO getCoordinatesDto(JsonNode jsonNode) {
         var coordJsonNode = jsonNode.path("coord");
 
         var longitudeValue = coordJsonNode.path("lon").asDouble();
@@ -34,13 +44,11 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
 
         var longitude = BigDecimal.valueOf(longitudeValue);
         var latitude = BigDecimal.valueOf(latitudeValue);
-        var country = jsonNode.path("sys").path("country").asText();
-        var city = jsonNode.path("name").asText();
 
-        return new LocationInfo(longitude, latitude, country, city);
+        return new CoordinatesDTO(longitude, latitude);
     }
 
-    private WeatherInfo getWeatherInfo(JsonNode jsonNode) {
+    private WeatherDTO getWeatherDto(JsonNode jsonNode) {
         var weatherJsonNode = jsonNode.path("weather");
         var sysJsonNode = jsonNode.path("sys");
 
@@ -50,17 +58,17 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
 
         var weatherGroup = WeatherGroup.valueOf(weatherGroupValue);
         var description = weatherJsonNode.findPath("description").asText();
-        var temperatureInfo = getTemperatureInfo(jsonNode);
-        var windInfo = getWindInfo(jsonNode);
+        var temperatureDto = getTemperatureDto(jsonNode);
+        var windDto = getWindDto(jsonNode);
         var humidity = jsonNode.path("main").path("humidity").asInt();
         var visibility = jsonNode.path("visibility").asInt();
         var sunrise = sysJsonNode.path("sunrise").asLong();
         var sunset = sysJsonNode.path("sunset").asLong();
 
-        return new WeatherInfo(weatherGroup, description, temperatureInfo, windInfo, humidity, visibility, sunrise, sunset);
+        return new WeatherDTO(weatherGroup, description, temperatureDto, windDto, humidity, visibility, sunrise, sunset);
     }
 
-    private TemperatureInfo getTemperatureInfo(JsonNode jsonNode) {
+    private TemperatureDTO getTemperatureDto(JsonNode jsonNode) {
         var temperatureJsonNode = jsonNode.path("main");
 
         var currentTemperatureValue = temperatureJsonNode.path("temp").asDouble();
@@ -73,10 +81,10 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
         var maxTemperature = (int) Math.round(maxTemperatureValue);
         var feelsLikeTemperature = (int) Math.round(feelsLikeTemperatureValue);
 
-        return new TemperatureInfo(currentTemperature, minTemperature, maxTemperature, feelsLikeTemperature);
+        return new TemperatureDTO(currentTemperature, minTemperature, maxTemperature, feelsLikeTemperature);
     }
 
-    private WindInfo getWindInfo(JsonNode jsonNode) {
+    private WindDTO getWindDto(JsonNode jsonNode) {
         var windJsonNode = jsonNode.path("wind");
 
         var speedValue = windJsonNode.path("speed").asDouble();
@@ -84,6 +92,6 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
         var speed = (int) Math.round(speedValue);
         var degrees = windJsonNode.path("deg").asInt();
 
-        return new WindInfo(speed, degrees);
+        return new WindDTO(speed, degrees);
     }
 }

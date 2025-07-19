@@ -38,7 +38,7 @@ import static utils.PagesUtil.SEARCH_LOCATIONS;
 @RequiredArgsConstructor
 class LocationControllerIntegrationTest {
 
-    private static final String SEARCH_LOCATIONS_URL = "/locations/search";
+    private static final String SEARCH_LOCATIONS_URL = "/locations";
     private static final String LOCATION_NAME_PARAMETER = "locationName";
 
     private final WebApplicationContext webApplicationContext;
@@ -64,7 +64,7 @@ class LocationControllerIntegrationTest {
     class SearchLocationTest {
 
         @Test
-        @DisplayName("Get /locations/search with success response")
+        @DisplayName("Get /locations with success response")
         void searchLocation_locationExists_returnSearchLocationsPageWithWeatherInfo() throws Exception {
             var locationName = "Moscow";
             var openWeatherResponse = new ClassPathResource("openweather/success_response.json").getInputStream();
@@ -84,7 +84,7 @@ class LocationControllerIntegrationTest {
         }
 
         @Test
-        @DisplayName("Get /locations/search when location not found")
+        @DisplayName("Get /locations when location not found")
         void searchLocation_locationNotFound_returnSearchLocationsPageWithNotFoundMessage() throws Exception {
             var locationName = "dummy";
             var httpClientErrorException = new HttpClientErrorException(HttpStatusCode.valueOf(404));
@@ -103,7 +103,7 @@ class LocationControllerIntegrationTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Get /locations/search when open weather returns errors")
+        @DisplayName("Get /locations when open weather returns errors")
         @ValueSource(ints = {400, 405, 500, 502, 503})
         void searchLocation_openWeatherReturnsErrors_returnHomePageWithErrorMessage(int statusCode) throws Exception {
             var locationName = "dummy";

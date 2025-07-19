@@ -15,13 +15,13 @@ import static utils.PagesUtil.SEARCH_LOCATIONS;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/locations/search")
+@RequestMapping("/locations")
 public class LocationController {
 
     private final LocationService locationService;
 
     @GetMapping
-    public String getLocation(Model model, @RequestParam(name = "locationName") @ValidLocationName String locationName) {
+    public String searchLocations(Model model, @RequestParam(name = "locationName") @ValidLocationName String locationName) {
         locationName = ExtraSpacesRemover.removeExtraSpaces(locationName);
         var weatherResponseDto = locationService.getWeatherInfo(locationName);
         model.addAttribute(LOCATION_WEATHER, weatherResponseDto);

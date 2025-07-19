@@ -1,11 +1,11 @@
 package dto.openweather;
 
-public record WeatherInfo(
+public record WeatherDTO(
 
         WeatherGroup group,
         String description,
-        TemperatureInfo temperatureInfo,
-        WindInfo windInfo,
+        TemperatureDTO temperatureDto,
+        WindDTO windDto,
         int humidity,
         int visibility,
         Long sunrise,

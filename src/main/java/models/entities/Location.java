@@ -16,6 +16,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import validation.annotations.ValidLatitude;
+import validation.annotations.ValidLongitude;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -38,15 +40,9 @@ public class Location {
     @ManyToMany(mappedBy = "locations")
     private Set<User> users = new HashSet<>();
 
-    @NotNull
-    @Digits(integer = 2, fraction = 4)
-    @DecimalMin(value = "-90")
-    @DecimalMax(value = "90")
+    @ValidLatitude
     private BigDecimal latitude;
 
-    @NotNull
-    @Digits(integer = 3, fraction = 4)
-    @DecimalMin(value = "-180")
-    @DecimalMax(value = "180")
+    @ValidLongitude
     private BigDecimal longitude;
 }
