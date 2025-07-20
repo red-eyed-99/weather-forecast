@@ -16,8 +16,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -46,7 +46,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
     @Builder.Default
-    private Set<Location> locations = new HashSet<>();
+    private List<Location> locations = new ArrayList<>();
 
     public void addLocation(Location location) {
         locations.add(location);

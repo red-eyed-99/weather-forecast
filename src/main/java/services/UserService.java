@@ -30,6 +30,12 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
+    @Transactional(readOnly = true)
+    public User findById(Long id) {
+        return userRepository.findByIdWithLocations(id)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+    }
+
     @Transactional
     public User save(SignUpUserDTO signUpUserDTO) {
         var user = userMapper.toUser(signUpUserDTO);
