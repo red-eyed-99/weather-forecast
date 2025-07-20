@@ -14,4 +14,8 @@ public class SqlScriptUtil {
     public static final String INSERT_SESSION =  BASE_PATH + "/insert_session_to_sessions.sql";
     public static final String INSERT_EXPIRED_SESSION = BASE_PATH + "/insert_expired_session_to_sessions.sql";
     public static final String INSERT_SESSIONS = BASE_PATH + "/insert_sessions_to_sessions.sql";
+    public static final String INSERT_SESSION =  BASE_PATH + "/sessions/insert_session_to_sessions.sql";
+    public static final String INSERT_EXPIRED_SESSION = BASE_PATH + "/sessions/insert_expired_session_to_sessions.sql";
+    public static final String INSERT_SESSIONS = BASE_PATH + "/sessions/insert_sessions_to_sessions.sql";
+
 }
