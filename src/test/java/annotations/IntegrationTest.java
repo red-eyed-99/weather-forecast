@@ -1,6 +1,6 @@
 package annotations;
 
-import config.ApplicationConfig;
+import config.TestApplicationConfig;
 import config.TestDataSourceConfig;
 import config.TestFlywayConfig;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ import static utils.TestPropertiesUtil.TEST_PROPERTIES_CLASSPATH;
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {ApplicationConfig.class, TestDataSourceConfig.class, TestFlywayConfig.class})
+@ContextConfiguration(classes = {TestApplicationConfig.class, TestDataSourceConfig.class, TestFlywayConfig.class})
 @TestPropertySource(TEST_PROPERTIES_CLASSPATH)
 @Transactional
 public @interface IntegrationTest {

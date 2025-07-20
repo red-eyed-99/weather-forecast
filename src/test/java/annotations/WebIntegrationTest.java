@@ -1,6 +1,6 @@
 package annotations;
 
-import config.ApplicationConfig;
+import config.TestApplicationConfig;
 import config.TestDataSourceConfig;
 import config.TestFlywayConfig;
 import config.WebConfig;
@@ -14,7 +14,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @IntegrationTest
-@ContextConfiguration(classes = {ApplicationConfig.class, WebConfig.class, TestDataSourceConfig.class, TestFlywayConfig.class})
+@ContextConfiguration(classes = {
+        TestApplicationConfig.class, WebConfig.class, TestDataSourceConfig.class, TestFlywayConfig.class
+})
 @WebAppConfiguration
 public @interface WebIntegrationTest {
 }
