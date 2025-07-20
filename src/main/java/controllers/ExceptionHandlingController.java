@@ -2,7 +2,7 @@ package controllers;
 
 import dto.auth.SignInUserDTO;
 import exceptions.BadCredentialsException;
-import exceptions.NotFoundException;
+import exceptions.LocationNotFoundException;
 import exceptions.OpenWeatherException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -53,9 +53,9 @@ public class ExceptionHandlingController {
         return HOME;
     }
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(LocationNotFoundException.class)
     @ResponseStatus(NOT_FOUND)
-    public String handleNotFoundException(NotFoundException exception, Model model) {
+    public String handleNotFoundException(LocationNotFoundException exception, Model model) {
         model.addAttribute(ERROR_MESSAGE, exception.getMessage());
         return SEARCH_LOCATIONS;
     }
