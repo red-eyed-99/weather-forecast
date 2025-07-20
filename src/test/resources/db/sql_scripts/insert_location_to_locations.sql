@@ -1,0 +1,1 @@
+INSERT INTO locations VALUES (1, 'Moscow', 55.7522, 37.6156)
