@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.LOCATION_WEATHER;
 import static utils.PagesUtil.HOME;
 import static utils.PagesUtil.SEARCH_LOCATIONS;
-import static utils.SqlScriptUtil.LOCATION_NAME;
 
 @WebIntegrationTest
 @RequiredArgsConstructor
@@ -64,14 +64,14 @@ class LocationControllerIntegrationTest {
             var openWeatherResponse = new ClassPathResource("openweather/success_response.json").getInputStream();
             var weatherResponseDto = new ObjectMapper().readValue(openWeatherResponse, WeatherResponseDTO.class);
 
-            var uri = openWeatherUriBuilder.build(LOCATION_NAME);
+            var uri = openWeatherUriBuilder.build(MOSCOW);
 
             doReturn(weatherResponseDto)
                     .when(restTemplate)
                     .getForObject(uri, WeatherResponseDTO.class);
 
             mockMvc.perform(get(SEARCH_LOCATIONS_URL)
-                            .queryParam(LOCATION_NAME_PARAMETER, LOCATION_NAME))
+                            .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
                     .andExpectAll(
                             model().attribute(LOCATION_WEATHER, weatherResponseDto),
                             view().name(SEARCH_LOCATIONS),
@@ -84,14 +84,14 @@ class LocationControllerIntegrationTest {
         void searchLocation_locationNotFound_returnSearchLocationsPageWithNotFoundMessage() throws Exception {
             var httpClientErrorException = new HttpClientErrorException(HttpStatusCode.valueOf(404));
 
-            var uri = openWeatherUriBuilder.build(LOCATION_NAME);
+            var uri = openWeatherUriBuilder.build("UNKNOWN-LOCATION");
 
             doThrow(httpClientErrorException)
                     .when(restTemplate)
                     .getForObject(uri, WeatherResponseDTO.class);
 
             mockMvc.perform(get(SEARCH_LOCATIONS_URL)
-                            .queryParam(LOCATION_NAME_PARAMETER, LOCATION_NAME))
+                            .queryParam(LOCATION_NAME_PARAMETER, "UNKNOWN-LOCATION"))
                     .andExpectAll(
                             model().attribute(ERROR_MESSAGE, "Location not found"),
                             view().name(SEARCH_LOCATIONS),
@@ -106,14 +106,14 @@ class LocationControllerIntegrationTest {
             var httpStatusCode = HttpStatusCode.valueOf(statusCode);
             var httpClientErrorException = new HttpClientErrorException(httpStatusCode);
 
-            var uri = openWeatherUriBuilder.build(LOCATION_NAME);
+            var uri = openWeatherUriBuilder.build(MOSCOW);
 
             doThrow(httpClientErrorException)
                     .when(restTemplate)
                     .getForObject(uri, WeatherResponseDTO.class);
 
             mockMvc.perform(get(SEARCH_LOCATIONS_URL)
-                            .queryParam(LOCATION_NAME_PARAMETER, LOCATION_NAME))
+                            .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
                     .andExpectAll(
                             model().attribute(ERROR_MESSAGE, "Unable to retrieve weather data, please try again later"),
                             view().name(HOME),

@@ -1,18 +1,11 @@
 package utils;
 
-import dto.openweather.CoordinatesDTO;
 import lombok.experimental.UtilityClass;
-import java.math.BigDecimal;
 
 @UtilityClass
 public class SqlScriptUtil {
 
     private static final String BASE_PATH = "/db/sql_scripts";
-
-
-    public static final Long LOCATION_ID = 1L;
-    public static final String LOCATION_NAME = "Moscow";
-    public static final CoordinatesDTO LOCATION_COORDINATES = getLocationCoordinates();
 
     public static final String INSERT_USER = BASE_PATH + "/insert_user_to_users.sql";
 
