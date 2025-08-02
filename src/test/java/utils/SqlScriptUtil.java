@@ -15,9 +15,5 @@ public class SqlScriptUtil {
 
     public static final String INSERT_LOCATIONS = BASE_PATH + "/insert_locations_to_locations.sql";
 
-    private static CoordinatesDTO getLocationCoordinates() {
-        var latitude = new BigDecimal("55.7522");
-        var longitude = new BigDecimal("37.6156");
-        return new CoordinatesDTO(longitude, latitude);
-    }
+    public static final String INSERT_USERS_LOCATIONS = BASE_PATH + "/insert_users_locations_to_users_locations.sql";
 }
