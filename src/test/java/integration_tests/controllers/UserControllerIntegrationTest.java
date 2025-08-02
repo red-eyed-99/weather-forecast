@@ -24,8 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static utils.CookieUtil.USER_SESSION_COOKIE;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
-import static utils.ModelAttributeUtil.USER_SESSION;
-import static utils.PagesUtil.HOME;
+import static utils.PagesUtil.REDIRECT_HOME;
 import static utils.PagesUtil.SIGN_IN;
 import static utils.SqlScriptUtil.INSERT_SESSION;
 import static utils.SqlScriptUtil.INSERT_USER;
@@ -54,8 +53,8 @@ public class UserControllerIntegrationTest {
     @Sql(scripts = {INSERT_USER, INSERT_SESSION})
     @CsvFileSource(resources = "/data/correct_location_coordinates.csv", numLinesToSkip = 1)
     @SneakyThrows
-    void addLocationToUserByCoordinates_userAuthorized_shouldAddLocationAndReturnHomePage(String longitude,
-                                                                                          String latitude) {
+    void addLocationToUserByCoordinates_userAuthorized_shouldAddLocationAndRedirectToHomePage(String longitude,
+                                                                                              String latitude) {
         var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
 
         mockMvc.perform(post(USERS_LOCATIONS_URL)
@@ -63,9 +62,8 @@ public class UserControllerIntegrationTest {
                         .formField(LONGITUDE, longitude)
                         .formField(LATITUDE, latitude))
                 .andExpectAll(
-                        model().attributeExists(USER_SESSION),
-                        view().name(HOME),
-                        status().isOk()
+                        view().name(REDIRECT_HOME),
+                        status().is3xxRedirection()
                 );
     }
 

@@ -8,6 +8,7 @@ public class ModelAttributeUtil {
     public static final String USER_SESSION = "userSession";
 
     public static final String LOCATION_WEATHER = "locationWeather";
+    public static final String LOCATIONS_WEATHER = "locationsWeather";
 
     public static final String USER = "user";
 

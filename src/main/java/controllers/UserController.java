@@ -15,7 +15,7 @@ import java.util.Objects;
 import static jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.USER_SESSION;
-import static utils.PagesUtil.HOME;
+import static utils.PagesUtil.REDIRECT_HOME;
 import static utils.PagesUtil.SIGN_IN;
 
 @Controller
@@ -39,6 +39,6 @@ public class UserController {
 
         userService.addLocation(userId, coordinatesDto);
 
-        return HOME;
+        return REDIRECT_HOME;
     }
 }

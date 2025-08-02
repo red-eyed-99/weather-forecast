@@ -1,6 +1,7 @@
 package models.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +36,7 @@ public class Location {
     @Size(max = 255)
     private String name;
 
-    @ManyToMany(mappedBy = "locations")
+    @ManyToMany(mappedBy = "locations", fetch = FetchType.LAZY)
     @Builder.Default
     private Set<User> users = new HashSet<>();
 
