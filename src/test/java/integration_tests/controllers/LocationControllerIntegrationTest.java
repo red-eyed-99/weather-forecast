@@ -1,7 +1,6 @@
 package integration_tests.controllers;
 
 import annotations.WebIntegrationTest;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import components.OpenWeatherUriBuilder;
 import dto.openweather.WeatherResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
+import utils.OpenWeatherTestData;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -61,8 +60,7 @@ class LocationControllerIntegrationTest {
         @Test
         @DisplayName("Get /locations with success response")
         void searchLocation_locationExists_returnSearchLocationsPageWithWeatherInfo() throws Exception {
-            var openWeatherResponse = new ClassPathResource("openweather/success_response.json").getInputStream();
-            var weatherResponseDto = new ObjectMapper().readValue(openWeatherResponse, WeatherResponseDTO.class);
+            var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
 
             var uri = openWeatherUriBuilder.build(MOSCOW);
 
