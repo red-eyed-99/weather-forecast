@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static utils.SqlScriptUtil.INSERT_SESSION;
 import static utils.SqlScriptUtil.INSERT_USER;
-import static utils.SqlScriptUtil.USER_SESSION_ID;
+import static utils.UserTestData.USER_SESSION_ID;
 
 @IntegrationTest
 @RequiredArgsConstructor

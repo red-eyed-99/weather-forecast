@@ -20,10 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static utils.SqlScriptUtil.INSERT_LOCATION;
 import static utils.SqlScriptUtil.INSERT_USER;
-import static utils.SqlScriptUtil.LOCATION_COORDINATES;
-import static utils.SqlScriptUtil.LOCATION_ID;
-import static utils.SqlScriptUtil.LOCATION_NAME;
-import static utils.SqlScriptUtil.USER_ID;
+import static utils.UserTestData.USER_ID;
 
 @IntegrationTest
 @RequiredArgsConstructor
