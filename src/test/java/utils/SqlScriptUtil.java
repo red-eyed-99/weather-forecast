@@ -13,7 +13,7 @@ public class SqlScriptUtil {
     public static final String INSERT_EXPIRED_SESSION = BASE_PATH + "/sessions/insert_expired_session_to_sessions.sql";
     public static final String INSERT_SESSIONS = BASE_PATH + "/sessions/insert_sessions_to_sessions.sql";
 
-    public static final String INSERT_LOCATION = BASE_PATH + "/insert_location_to_locations.sql";
+    public static final String INSERT_LOCATIONS = BASE_PATH + "/insert_locations_to_locations.sql";
 
     private static CoordinatesDTO getLocationCoordinates() {
         var latitude = new BigDecimal("55.7522");

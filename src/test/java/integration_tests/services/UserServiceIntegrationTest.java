@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.doReturn;
 import static utils.LocationTestData.MOSCOW;
+import static utils.SqlScriptUtil.INSERT_LOCATIONS;
 import static utils.SqlScriptUtil.INSERT_USER;
 import static utils.UserTestData.USER_ID;
 
@@ -35,7 +36,7 @@ class UserServiceIntegrationTest {
 
     @Test
     @DisplayName("Add location to user when location exists in database")
-    @Sql({INSERT_USER, INSERT_LOCATION})
+    @Sql({INSERT_USER, INSERT_LOCATIONS})
     void addLocationToUser_locationExistsInDatabase_shouldAddLocationToUser() {
         var locationInfo = LocationTestData.getLocationInfo(MOSCOW);
 
