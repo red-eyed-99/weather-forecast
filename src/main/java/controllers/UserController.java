@@ -29,6 +29,7 @@ public class UserController {
     public String addLocation(Model model, @Valid CoordinatesDTO coordinatesDto, HttpServletResponse response) {
     private final LocationNameValidator locationNameValidator;
 
+    @PostMapping("/add-location")
     public String addLocation(Model model, @RequestParam("locationName") String locationName, HttpServletResponse response) {
         locationNameValidator.validate(locationName);
 

@@ -34,7 +34,7 @@ import static utils.UserTestData.USER_SESSION_ID;
 @RequiredArgsConstructor
 public class UserControllerIntegrationTest {
 
-    private static final String USERS_LOCATIONS_URL = "/users/locations";
+    private static final String USERS_ADD_LOCATION_URL = "/users/add-location";
 
     private final WebApplicationContext webApplicationContext;
 
