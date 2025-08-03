@@ -9,7 +9,7 @@ public class LocationNameValidator implements ConstraintValidator<ValidLocationN
 
     private static final int MAX_LENGTH = 100;
 
-    private static final String PATTERN = "^(?=.*[A-Za-zА-Яа-я])[A-Za-zА-Яа-я\\d\\s\\-,.’'&()/]{1,100}$";
+    private static final String PATTERN = "^(?=.*[A-Za-z])[A-Za-z\\d\\s\\-,.’'&()/]{1,100}$";
 
     @Override
     public boolean isValid(String locationName, ConstraintValidatorContext context) {
@@ -27,7 +27,7 @@ public class LocationNameValidator implements ConstraintValidator<ValidLocationN
 
         if (!locationName.matches(PATTERN)) {
             setCustomMessage(context, "Enter at least 1 letter. " +
-                    "Allowed characters: Cyrillic, Latin, numbers, space, special characters -,.’'&()/.");
+                    "Allowed latin characters, numbers, spaces, special characters -,.’'&()/.");
             return false;
         }
 
