@@ -7,14 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import validation.annotations.ValidLatitude;
+import validation.annotations.ValidLocationName;
 import validation.annotations.ValidLongitude;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -32,8 +31,7 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 255)
+    @ValidLocationName
     private String name;
 
     @ManyToMany(mappedBy = "locations", fetch = FetchType.LAZY)
