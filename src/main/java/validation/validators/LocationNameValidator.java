@@ -2,9 +2,14 @@ package validation.validators;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 import utils.ExtraSpacesRemover;
 import validation.annotations.ValidLocationName;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+@Component
 public class LocationNameValidator implements ConstraintValidator<ValidLocationName, String> {
 
     private static final int MAX_LENGTH = 100;
@@ -38,5 +43,11 @@ public class LocationNameValidator implements ConstraintValidator<ValidLocationN
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(message)
                 .addConstraintViolation();
+    }
+
+    public void validate(String locationName) {
+        if (!locationName.matches(PATTERN)) {
+            throw new ResponseStatusException(BAD_REQUEST);
+        }
     }
 }
