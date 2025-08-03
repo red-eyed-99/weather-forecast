@@ -58,7 +58,7 @@ class LocationControllerIntegrationTest {
     class SearchLocationTest {
 
         @Test
-        @DisplayName("Get /locations with success response")
+        @DisplayName("Get " + SEARCH_LOCATIONS_URL + " with success response")
         void searchLocation_locationExists_returnSearchLocationsPageWithWeatherInfo() throws Exception {
             var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
 
@@ -78,7 +78,7 @@ class LocationControllerIntegrationTest {
         }
 
         @Test
-        @DisplayName("Get /locations when location not found")
+        @DisplayName("Get " + SEARCH_LOCATIONS_URL + " when location not found")
         void searchLocation_locationNotFound_returnSearchLocationsPageWithNotFoundMessage() throws Exception {
             var httpClientErrorException = new HttpClientErrorException(HttpStatusCode.valueOf(404));
 
@@ -98,7 +98,7 @@ class LocationControllerIntegrationTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Get /locations when open weather returns errors")
+        @DisplayName("Get " + SEARCH_LOCATIONS_URL + " when open weather returns errors")
         @ValueSource(ints = {400, 405, 500, 502, 503})
         void searchLocation_openWeatherReturnsErrors_returnHomePageWithErrorMessage(int statusCode) throws Exception {
             var httpStatusCode = HttpStatusCode.valueOf(statusCode);
@@ -120,8 +120,8 @@ class LocationControllerIntegrationTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Get /location/search with incorrect location name")
-        @CsvFileSource(resources = "/data/incorrect_location_names.csv")
+        @DisplayName("Get " + SEARCH_LOCATIONS_URL + " with incorrect location name")
+        @CsvFileSource(resources = "/data/incorrect_location_names_with_message.csv")
         void searchLocation_incorrectLocationName_returnSearchLocationsPageWithErrorMessage(
                 String locationName, String expectedErrorMessage) throws Exception {
 
@@ -135,7 +135,7 @@ class LocationControllerIntegrationTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Get /location/search with correct location name")
+        @DisplayName("Get " + SEARCH_LOCATIONS_URL + " with correct location name")
         @CsvFileSource(resources = "/data/correct_location_names.csv")
         void searchLocation_correctLocationName_shouldReturnSearchLocationsPageWithoutErrors(String locationName) throws Exception {
             var uri = openWeatherUriBuilder.build(locationName);
