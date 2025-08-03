@@ -18,4 +18,13 @@ public class UserLocationRepository {
                 .setParameter("locationId", locationId)
                 .executeUpdate();
     }
+
+    public void removeLocationFromUser(Long locationId, Long userId) {
+        var sql = "delete from users_locations where user_id = :userId and location_id = :locationId";
+
+        session.createNativeMutationQuery(sql)
+                .setParameter("userId", userId)
+                .setParameter("locationId", locationId)
+                .executeUpdate();
+    }
 }

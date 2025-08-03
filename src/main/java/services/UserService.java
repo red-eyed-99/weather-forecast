@@ -59,4 +59,11 @@ public class UserService {
 
         userLocationService.addLocationToUser(locationId, userId);
     }
+
+    public void removeLocation(Long userId, String locationName) {
+        var locationId = locationService.findLocationId(locationName)
+                .orElseThrow(() -> new NotFoundException("Location not found"));
+
+        userLocationService.removeLocationFromUser(locationId, userId);
+    }
 }

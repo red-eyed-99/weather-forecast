@@ -15,4 +15,9 @@ public class UserLocationService {
     public void addLocationToUser(Long locationId, Long userId) {
         userLocationRepository.addLocationToUser(locationId, userId);
     }
+
+    @Transactional
+    public void removeLocationFromUser(Long locationId, Long userId) {
+        userLocationRepository.removeLocationFromUser(locationId, userId);
+    }
 }

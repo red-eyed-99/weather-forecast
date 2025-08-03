@@ -25,8 +25,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/locations")
-    public String addLocation(Model model, @Valid CoordinatesDTO coordinatesDto, HttpServletResponse response) {
     private final LocationNameValidator locationNameValidator;
 
     @PostMapping("/add-location")
@@ -43,11 +41,25 @@ public class UserController {
 
         var userId = Objects.requireNonNull(userSessionDto).userId();
 
-        userService.addLocation(userId, coordinatesDto);
         userService.addLocation(userId, locationName);
 
         return REDIRECT_HOME;
     }
+
+    @PostMapping("/remove-location")
+    public String removeLocation(Model model, @RequestParam("locationName") String locationName, HttpServletResponse response) {
+        locationNameValidator.validate(locationName);
+
+        if (!model.containsAttribute(USER_SESSION)) {
+            response.setStatus(SC_UNAUTHORIZED);
+            return SIGN_IN;
+        }
+
+        var userSessionDto = (UserSessionDTO) model.getAttribute(USER_SESSION);
+
+        var userId = Objects.requireNonNull(userSessionDto).userId();
+
+        userService.removeLocation(userId, locationName);
 
         return REDIRECT_HOME;
     }
