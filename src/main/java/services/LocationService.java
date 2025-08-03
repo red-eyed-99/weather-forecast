@@ -1,6 +1,5 @@
 package services;
 
-import dto.openweather.CoordinatesDTO;
 import lombok.RequiredArgsConstructor;
 import models.entities.Location;
 import org.springframework.stereotype.Service;
@@ -17,22 +16,25 @@ public class LocationService {
     private final LocationRepository locationRepository;
 
     @Transactional(readOnly = true)
-    public Optional<Long> findLocationId(CoordinatesDTO coordinatesDTO) {
-        var latitude = coordinatesDTO.latitude();
-        var longitude = coordinatesDTO.longitude();
-        return locationRepository.findLocationId(latitude, longitude);
+    public Optional<Long> findLocationId(String locationName) {
+        return locationRepository.findLocationId(locationName);
     }
 
     @Transactional
-    public Location addLocation(CoordinatesDTO coordinatesDTO) {
-        var weatherResponseDTO = openWeatherService.getWeatherInfo(coordinatesDTO);
+    public Location addLocation(String locationName) {
+        var weatherResponseDTO = openWeatherService.getWeatherInfo(locationName);
 
-        var locationName = weatherResponseDTO.locationDto().name();
+        var coordinatesDto = weatherResponseDTO.locationDto().coordinatesDto();
+
+        var latitude = coordinatesDto.latitude();
+        var longitude = coordinatesDto.longitude();
+
+        locationName = weatherResponseDTO.locationDto().name();
 
         var location = Location.builder()
                 .name(locationName)
-                .latitude(coordinatesDTO.latitude())
-                .longitude(coordinatesDTO.longitude())
+                .latitude(latitude)
+                .longitude(longitude)
                 .build();
 
         return locationRepository.save(location);

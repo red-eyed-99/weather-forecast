@@ -1,15 +1,15 @@
 package controllers;
 
 import dto.auth.UserSessionDTO;
-import dto.openweather.CoordinatesDTO;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import services.UserService;
+import validation.validators.LocationNameValidator;
 import java.util.Objects;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
@@ -27,6 +27,11 @@ public class UserController {
 
     @PostMapping("/locations")
     public String addLocation(Model model, @Valid CoordinatesDTO coordinatesDto, HttpServletResponse response) {
+    private final LocationNameValidator locationNameValidator;
+
+    public String addLocation(Model model, @RequestParam("locationName") String locationName, HttpServletResponse response) {
+        locationNameValidator.validate(locationName);
+
         if (!model.containsAttribute(USER_SESSION)) {
             model.addAttribute(ERROR_MESSAGE, "To add locations you need to sign in.");
             response.setStatus(SC_UNAUTHORIZED);
@@ -38,6 +43,10 @@ public class UserController {
         var userId = Objects.requireNonNull(userSessionDto).userId();
 
         userService.addLocation(userId, coordinatesDto);
+        userService.addLocation(userId, locationName);
+
+        return REDIRECT_HOME;
+    }
 
         return REDIRECT_HOME;
     }

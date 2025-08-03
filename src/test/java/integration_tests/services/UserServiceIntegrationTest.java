@@ -41,9 +41,10 @@ class UserServiceIntegrationTest {
         var locationInfo = LocationTestData.getLocationInfo(MOSCOW);
 
         var locationId = locationInfo.id();
+        var locationName = locationInfo.name();
         var locationCoordinates = locationInfo.coordinates();
 
-        userService.addLocation(USER_ID, locationCoordinates);
+        userService.addLocation(USER_ID, locationName);
 
         var user = userService.findById(USER_ID);
 
@@ -69,13 +70,13 @@ class UserServiceIntegrationTest {
         var locationName = weatherResponseDto.locationDto().name();
         var locationCoordinates = weatherResponseDto.locationDto().coordinatesDto();
 
-        var uri = openWeatherUriBuilder.build(locationCoordinates);
+        var uri = openWeatherUriBuilder.build(locationName);
 
         doReturn(weatherResponseDto)
                 .when(restTemplate)
                 .getForObject(uri, WeatherResponseDTO.class);
 
-        userService.addLocation(USER_ID, locationCoordinates);
+        userService.addLocation(USER_ID, locationName);
 
         var user = userService.findById(USER_ID);
 

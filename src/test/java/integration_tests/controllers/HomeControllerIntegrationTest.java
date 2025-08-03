@@ -90,9 +90,9 @@ public class HomeControllerIntegrationTest {
         );
 
         for (var weatherResponseDto : weatherResponseDtos) {
-            var coordinatesDto = weatherResponseDto.locationDto().coordinatesDto();
+            var locationName = weatherResponseDto.locationDto().name();
 
-            var uri = openWeatherUriBuilder.build(coordinatesDto);
+            var uri = openWeatherUriBuilder.build(locationName);
 
             doReturn(weatherResponseDto)
                     .when(restTemplate)

@@ -1,7 +1,6 @@
 package services;
 
 import dto.auth.SignUpUserDTO;
-import dto.openweather.CoordinatesDTO;
 import exceptions.NotFoundException;
 import exceptions.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
@@ -47,14 +46,14 @@ public class UserService {
         }
     }
 
-    public void addLocation(Long userId, CoordinatesDTO coordinatesDTO) {
-        var locationIdOptional = locationService.findLocationId(coordinatesDTO);
+    public void addLocation(Long userId, String locationName) {
+        var locationIdOptional = locationService.findLocationId(locationName);
         var locationId = (Long) null;
 
         if (locationIdOptional.isPresent()) {
             locationId = locationIdOptional.get();
         } else {
-            var location = locationService.addLocation(coordinatesDTO);
+            var location = locationService.addLocation(locationName);
             locationId = location.getId();
         }
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -16,13 +17,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import services.UserService;
 
-import static dto.openweather.CoordinatesDTO.Fields.LATITUDE;
-import static dto.openweather.CoordinatesDTO.Fields.LONGITUDE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static utils.CookieUtil.USER_SESSION_COOKIE;
+import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.PagesUtil.REDIRECT_HOME;
 import static utils.PagesUtil.SIGN_IN;
@@ -49,18 +49,16 @@ public class UserControllerIntegrationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Post " + USERS_LOCATIONS_URL + " to add location to an authorized user by coordinates")
+    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an authorized user")
     @Sql(scripts = {INSERT_USER, INSERT_SESSION})
-    @CsvFileSource(resources = "/data/correct_location_coordinates.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/data/correct_location_names.csv")
     @SneakyThrows
-    void addLocationToUserByCoordinates_userAuthorized_shouldAddLocationAndRedirectToHomePage(String longitude,
-                                                                                              String latitude) {
+    void addLocationToUser_userAuthorized_shouldAddLocationAndRedirectToHomePage(String locationName) {
         var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
 
-        mockMvc.perform(post(USERS_LOCATIONS_URL)
+        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
                         .cookie(cookie)
-                        .formField(LONGITUDE, longitude)
-                        .formField(LATITUDE, latitude))
+                        .formField("locationName", locationName))
                 .andExpectAll(
                         view().name(REDIRECT_HOME),
                         status().is3xxRedirection()
@@ -68,11 +66,10 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Post " + USERS_LOCATIONS_URL + " to add location to an unauthorized user by coordinates")
-    void addLocationToUserByCoordinates_userUnauthorized_shouldReturnSignInPageWithError() throws Exception {
-        mockMvc.perform(post(USERS_LOCATIONS_URL)
-                        .formField(LONGITUDE, "180")
-                        .formField(LATITUDE, "90"))
+    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an unauthorized user")
+    void addLocationToUser_userUnauthorized_shouldReturnSignInPageWithError() throws Exception {
+        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
+                        .formField("locationName", MOSCOW))
                 .andExpectAll(
                         model().attributeExists(ERROR_MESSAGE),
                         view().name(SIGN_IN),
@@ -81,13 +78,16 @@ public class UserControllerIntegrationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Post " + USERS_LOCATIONS_URL + " with incorrect location coordinates")
-    @CsvFileSource(resources = "/data/incorrect_location_coordinates.csv", numLinesToSkip = 1)
+    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " with incorrect location name")
+    @ValueSource(strings = {"Москва", "Mosква", "Mo$cow", "", "-,.’'&()/"})
+    @Sql(scripts = {INSERT_USER, INSERT_SESSION})
     @SneakyThrows
-    void addLocationToUserByCoordinates_incorrectCoordinates_statusIsBadRequest(String longitude, String latitude) {
-        mockMvc.perform(post(USERS_LOCATIONS_URL)
-                        .formField(LONGITUDE, longitude)
-                        .formField(LATITUDE, latitude))
+    void addLocationToUser_incorrectLocationName_statusIsBadRequest(String locationName) {
+        var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
+                        .cookie(cookie)
+                        .formField("locationName", locationName))
                 .andExpect(status().isBadRequest());
     }
 }

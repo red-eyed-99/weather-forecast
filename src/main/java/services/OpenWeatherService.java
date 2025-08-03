@@ -1,6 +1,5 @@
 package services;
 
-import dto.openweather.CoordinatesDTO;
 import dto.openweather.WeatherResponseDTO;
 import exceptions.LocationNotFoundException;
 import exceptions.OpenWeatherException;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
@@ -37,23 +37,14 @@ public class OpenWeatherService {
     private String openWeatherKey;
 
     public WeatherResponseDTO getWeatherInfo(String locationName) {
+        var encoded = false;
+
         var uri = UriComponentsBuilder.newInstance()
                 .uri(URI.create(openWeatherUrl))
                 .queryParam("q", locationName)
                 .queryParam("units", UNIT_OF_MEASUREMENT)
                 .queryParam("appid", openWeatherKey)
-                .toUriString();
-
-        return getWeatherResponseDto(uri);
-    }
-
-    public WeatherResponseDTO getWeatherInfo(CoordinatesDTO coordinatesDTO) {
-        var uri = UriComponentsBuilder.newInstance()
-                .uri(URI.create(openWeatherUrl))
-                .queryParam("lat", coordinatesDTO.latitude())
-                .queryParam("lon", coordinatesDTO.longitude())
-                .queryParam("units", UNIT_OF_MEASUREMENT)
-                .queryParam("appid", openWeatherKey)
+                .build(encoded)
                 .toUriString();
 
         return getWeatherResponseDto(uri);
@@ -63,12 +54,8 @@ public class OpenWeatherService {
         var weatherResponseDtos = new ArrayList<WeatherResponseDTO>();
 
         for (var location : locations) {
-            var longitude = location.getLongitude();
-            var latitude = location.getLatitude();
-
-            var coordinatesDto = new CoordinatesDTO(longitude, latitude);
-
-            weatherResponseDtos.add(getWeatherInfo(coordinatesDto));
+            var locationName = location.getName();
+            weatherResponseDtos.add(getWeatherInfo(locationName));
         }
 
         return weatherResponseDtos;
@@ -79,7 +66,7 @@ public class OpenWeatherService {
 
         try {
             weatherResponseDTO = restTemplate.getForObject(uri, WeatherResponseDTO.class);
-        } catch (HttpClientErrorException exception) {
+        } catch (HttpClientErrorException | HttpServerErrorException exception) {
             var statusCode = exception.getStatusCode();
 
             if (statusCode.value() == NOT_FOUND.value()) {
