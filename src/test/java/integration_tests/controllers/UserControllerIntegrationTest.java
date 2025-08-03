@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -15,19 +16,27 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import services.OpenWeatherService;
 import services.UserService;
+import utils.OpenWeatherTestData;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static utils.CookieUtil.USER_SESSION_COOKIE;
+import static utils.LocationTestData.LONDON;
 import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.PagesUtil.REDIRECT_HOME;
 import static utils.PagesUtil.SIGN_IN;
+import static utils.SqlScriptUtil.INSERT_LOCATIONS;
 import static utils.SqlScriptUtil.INSERT_SESSION;
 import static utils.SqlScriptUtil.INSERT_USER;
+import static utils.SqlScriptUtil.INSERT_USERS_LOCATIONS;
+import static utils.UserTestData.USER_ID;
 import static utils.UserTestData.USER_SESSION_ID;
 
 @WebIntegrationTest
@@ -35,11 +44,14 @@ import static utils.UserTestData.USER_SESSION_ID;
 public class UserControllerIntegrationTest {
 
     private static final String USERS_ADD_LOCATION_URL = "/users/add-location";
+    private static final String USERS_REMOVE_LOCATION_URL = "/users/remove-location";
 
     private final WebApplicationContext webApplicationContext;
 
-    @MockitoBean
     private final UserService userService;
+
+    @MockitoBean
+    private final OpenWeatherService openWeatherService;
 
     private MockMvc mockMvc;
 
@@ -48,46 +60,107 @@ public class UserControllerIntegrationTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    @ParameterizedTest
-    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an authorized user")
-    @Sql(scripts = {INSERT_USER, INSERT_SESSION})
-    @CsvFileSource(resources = "/data/correct_location_names.csv")
-    @SneakyThrows
-    void addLocationToUser_userAuthorized_shouldAddLocationAndRedirectToHomePage(String locationName) {
-        var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+    @Nested
+    class AddUserLocation {
 
-        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
-                        .cookie(cookie)
-                        .formField("locationName", locationName))
-                .andExpectAll(
-                        view().name(REDIRECT_HOME),
-                        status().is3xxRedirection()
-                );
+        @ParameterizedTest
+        @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an authorized user")
+        @Sql(scripts = {INSERT_USER, INSERT_SESSION})
+        @CsvFileSource(resources = "/data/correct_location_names.csv")
+        @SneakyThrows
+        void addLocationToUser_userAuthorized_shouldAddLocationAndRedirectToHomePage(String locationName) {
+            doReturn(OpenWeatherTestData.getWeatherResponseDto(MOSCOW))
+                    .when(openWeatherService)
+                    .getWeatherInfo(locationName);
+
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+            mockMvc.perform(post(USERS_ADD_LOCATION_URL)
+                            .cookie(cookie)
+                            .formField("locationName", locationName))
+                    .andExpectAll(
+                            view().name(REDIRECT_HOME),
+                            status().is3xxRedirection()
+                    );
+        }
+
+        @Test
+        @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an unauthorized user")
+        void addLocationToUser_userUnauthorized_shouldReturnSignInPageWithError() throws Exception {
+            mockMvc.perform(post(USERS_ADD_LOCATION_URL)
+                            .formField("locationName", MOSCOW))
+                    .andExpectAll(
+                            model().attributeExists(ERROR_MESSAGE),
+                            view().name(SIGN_IN),
+                            status().isUnauthorized()
+                    );
+        }
+
+        @ParameterizedTest
+        @DisplayName("Post " + USERS_ADD_LOCATION_URL + " with incorrect location name")
+        @CsvFileSource(resources = "/data/incorrect_location_names.csv")
+        @Sql(scripts = {INSERT_USER, INSERT_SESSION})
+        @SneakyThrows
+        void addLocationToUser_incorrectLocationName_statusIsBadRequest(String locationName) {
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+            mockMvc.perform(post(USERS_ADD_LOCATION_URL)
+                            .cookie(cookie)
+                            .formField("locationName", locationName))
+                    .andExpect(status().isBadRequest());
+        }
     }
 
-    @Test
-    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " to add location to an unauthorized user")
-    void addLocationToUser_userUnauthorized_shouldReturnSignInPageWithError() throws Exception {
-        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
-                        .formField("locationName", MOSCOW))
-                .andExpectAll(
-                        model().attributeExists(ERROR_MESSAGE),
-                        view().name(SIGN_IN),
-                        status().isUnauthorized()
-                );
-    }
+    @Nested
+    class RemoveUserLocation {
 
-    @ParameterizedTest
-    @DisplayName("Post " + USERS_ADD_LOCATION_URL + " with incorrect location name")
-    @ValueSource(strings = {"Москва", "Mosква", "Mo$cow", "", "-,.’'&()/"})
-    @Sql(scripts = {INSERT_USER, INSERT_SESSION})
-    @SneakyThrows
-    void addLocationToUser_incorrectLocationName_statusIsBadRequest(String locationName) {
-        var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+        @ParameterizedTest
+        @DisplayName("Post " + USERS_REMOVE_LOCATION_URL + " to remove location from an authorized user")
+        @Sql(scripts = {INSERT_USER, INSERT_SESSION, INSERT_LOCATIONS, INSERT_USERS_LOCATIONS})
+        @ValueSource(strings = {MOSCOW, LONDON})
+        @SneakyThrows
+        void removeLocationFromUser_userAuthorized_shouldRemoveLocationAndRedirectToHomePage(String locationName) {
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
 
-        mockMvc.perform(post(USERS_ADD_LOCATION_URL)
-                        .cookie(cookie)
-                        .formField("locationName", locationName))
-                .andExpect(status().isBadRequest());
+            mockMvc.perform(post(USERS_REMOVE_LOCATION_URL)
+                            .cookie(cookie)
+                            .formField("locationName", locationName))
+                    .andExpectAll(
+                            view().name(REDIRECT_HOME),
+                            status().is3xxRedirection()
+                    );
+
+            var user = userService.findById(USER_ID);
+
+            var userLocations = user.getLocations();
+
+            assertTrue(userLocations.stream()
+                    .noneMatch(location -> location.getName().equals(locationName)));
+        }
+
+        @Test
+        @DisplayName("Post " + USERS_REMOVE_LOCATION_URL + " to remove location from an unauthorized user")
+        void removeLocationFromUser_userUnauthorized_shouldReturnSignInPage() throws Exception {
+            mockMvc.perform(post(USERS_REMOVE_LOCATION_URL)
+                            .formField("locationName", MOSCOW))
+                    .andExpectAll(
+                            view().name(SIGN_IN),
+                            status().isUnauthorized()
+                    );
+        }
+
+        @ParameterizedTest
+        @DisplayName("Post " + USERS_REMOVE_LOCATION_URL + " with incorrect location name")
+        @CsvFileSource(resources = "/data/incorrect_location_names.csv")
+        @Sql(scripts = {INSERT_USER, INSERT_SESSION})
+        @SneakyThrows
+        void removeLocationFromUser_incorrectLocationName_statusIsBadRequest(String locationName) {
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+            mockMvc.perform(post(USERS_REMOVE_LOCATION_URL)
+                            .cookie(cookie)
+                            .formField("locationName", locationName))
+                    .andExpect(status().isBadRequest());
+        }
     }
 }

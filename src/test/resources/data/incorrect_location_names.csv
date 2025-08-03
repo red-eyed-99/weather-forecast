@@ -1,21 +1,25 @@
->,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-12345,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-!,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-abc~,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-moreThan100CharactersmoreThan100CharactersmoreThan100CharactersmoreThan100CharactersmoreThan100Charac,"Location name is too long"
-Ô,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-汉字,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-<,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-[,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-],"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-*,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-?,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-@,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-%,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-:,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-;,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-_,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-+,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-=,"Enter at least 1 letter. Allowed latin characters, numbers, spaces, special characters -,.’'&()/."
-"","Enter location name. Example: Moscow"
-"         ","Enter location name. Example: Moscow"
+Москва
+Mosква
+Mo$cow
+-,.’'&()/
+>
+12345
+abc~
+!
+moreThan100CharactersmoreThan100CharactersmoreThan100CharactersmoreThan100CharactersmoreThan100Charac
+Ô
+汉字
+<
+[
+]
+*
+?
+@
+%
+:
+;
+_
++
+=
+""
+"         "
