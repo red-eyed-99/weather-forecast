@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import models.entities.Location;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -18,10 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static utils.PropertiesUtil.APPLICATION_PROPERTIES_CLASSPATH;
 
 @Service
-@PropertySource(APPLICATION_PROPERTIES_CLASSPATH)
 @RequiredArgsConstructor
 @Slf4j
 public class OpenWeatherService {

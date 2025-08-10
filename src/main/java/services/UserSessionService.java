@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import models.entities.User;
 import models.entities.UserSession;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static utils.PropertiesUtil.APPLICATION_PROPERTIES_CLASSPATH;
-
 @Service
-@PropertySource(APPLICATION_PROPERTIES_CLASSPATH)
 @RequiredArgsConstructor
 @Slf4j
 public class UserSessionService {
