@@ -20,4 +20,9 @@ public class UserLocationService {
     public void removeLocationFromUser(Long locationId, Long userId) {
         userLocationRepository.removeLocationFromUser(locationId, userId);
     }
+
+    @Transactional(readOnly = true)
+    public boolean locationAdded(Long locationId, Long userId) {
+        return userLocationRepository.locationAdded(locationId, userId);
+    }
 }
