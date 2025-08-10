@@ -3,6 +3,7 @@ package integration_tests.controllers;
 import annotations.WebIntegrationTest;
 import components.OpenWeatherUriBuilder;
 import dto.openweather.WeatherResponseDTO;
+import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +14,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.HttpClientErrorException;
@@ -20,17 +22,25 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import utils.OpenWeatherTestData;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static utils.CookieUtil.USER_SESSION_COOKIE;
 import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.LOCATION_WEATHER;
 import static utils.PagesUtil.HOME;
 import static utils.PagesUtil.SEARCH_LOCATIONS;
+import static utils.SqlScriptUtil.INSERT_LOCATIONS;
+import static utils.SqlScriptUtil.INSERT_SESSION;
+import static utils.SqlScriptUtil.INSERT_USER;
+import static utils.SqlScriptUtil.INSERT_USERS_LOCATIONS;
+import static utils.UserTestData.USER_SESSION_ID;
 
 @WebIntegrationTest
 @RequiredArgsConstructor
@@ -38,6 +48,8 @@ class LocationControllerIntegrationTest {
 
     private static final String SEARCH_LOCATIONS_URL = "/locations";
     private static final String LOCATION_NAME_PARAMETER = "locationName";
+
+    private static final String LOCATION_ADDED_FIELD_NAME = "locationAdded";
 
     private final WebApplicationContext webApplicationContext;
 
@@ -150,6 +162,80 @@ class LocationControllerIntegrationTest {
                             model().attributeDoesNotExist(ERROR_MESSAGE),
                             view().name(SEARCH_LOCATIONS),
                             status().isOk()
+                    );
+        }
+
+        @Test
+        @DisplayName("A location is marked as added if the authorized user has this location")
+        @Sql({INSERT_USER, INSERT_SESSION, INSERT_LOCATIONS, INSERT_USERS_LOCATIONS})
+        void searchLocation_userIsAuthorizedAndHasSearchLocation_foundLocationIsMarkedAsAdded() throws Exception {
+            var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
+
+            var locationName = weatherResponseDto.getLocationDto().name();
+
+            var uri = openWeatherUriBuilder.build(locationName);
+
+            doReturn(weatherResponseDto)
+                    .when(restTemplate)
+                    .getForObject(uri, WeatherResponseDTO.class);
+
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+            mockMvc.perform(get(SEARCH_LOCATIONS_URL)
+                            .cookie(cookie)
+                            .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
+                    .andExpect(
+                            model().attribute(LOCATION_WEATHER,
+                                    hasProperty(LOCATION_ADDED_FIELD_NAME, equalTo(true))
+                            )
+                    );
+        }
+
+        @Test
+        @DisplayName("A location isn't marked as added if the authorized user hasn't this location")
+        @Sql({INSERT_USER, INSERT_SESSION})
+        void searchLocation_userIsAuthorizedAndHasNotSearchLocation_foundLocationIsNotMarkedAsAdded() throws Exception {
+            var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
+
+            var locationName = weatherResponseDto.getLocationDto().name();
+
+            var uri = openWeatherUriBuilder.build(locationName);
+
+            doReturn(weatherResponseDto)
+                    .when(restTemplate)
+                    .getForObject(uri, WeatherResponseDTO.class);
+
+            var cookie = new Cookie(USER_SESSION_COOKIE, USER_SESSION_ID);
+
+            mockMvc.perform(get(SEARCH_LOCATIONS_URL)
+                            .cookie(cookie)
+                            .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
+                    .andExpect(
+                            model().attribute(LOCATION_WEATHER,
+                                    hasProperty(LOCATION_ADDED_FIELD_NAME, equalTo(false))
+                            )
+                    );
+        }
+
+        @Test
+        @DisplayName("A location isn't marked as added if the unauthorized user search locations")
+        void searchLocation_userIsUnauthorized_foundLocationIsNotMarkedAsAdded() throws Exception {
+            var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
+
+            var locationName = weatherResponseDto.getLocationDto().name();
+
+            var uri = openWeatherUriBuilder.build(locationName);
+
+            doReturn(weatherResponseDto)
+                    .when(restTemplate)
+                    .getForObject(uri, WeatherResponseDTO.class);
+
+            mockMvc.perform(get(SEARCH_LOCATIONS_URL)
+                            .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
+                    .andExpect(
+                            model().attribute(LOCATION_WEATHER,
+                                    hasProperty(LOCATION_ADDED_FIELD_NAME, equalTo(false))
+                            )
                     );
         }
     }
