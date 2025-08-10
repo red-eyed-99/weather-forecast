@@ -67,8 +67,8 @@ class UserServiceIntegrationTest {
     void addLocationToUser_locationDoesNotExistInDatabase_shouldAddLocationToDatabaseAndUser() {
         var weatherResponseDto = OpenWeatherTestData.getWeatherResponseDto(MOSCOW);
 
-        var locationName = weatherResponseDto.locationDto().name();
-        var locationCoordinates = weatherResponseDto.locationDto().coordinatesDto();
+        var locationName = weatherResponseDto.getLocationDto().name();
+        var locationCoordinates = weatherResponseDto.getLocationDto().coordinatesDto();
 
         var uri = openWeatherUriBuilder.build(locationName);
 

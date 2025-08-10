@@ -90,7 +90,7 @@ public class HomeControllerIntegrationTest {
         );
 
         for (var weatherResponseDto : weatherResponseDtos) {
-            var locationName = weatherResponseDto.locationDto().name();
+            var locationName = weatherResponseDto.getLocationDto().name();
 
             var uri = openWeatherUriBuilder.build(locationName);
 

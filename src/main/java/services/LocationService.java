@@ -24,12 +24,12 @@ public class LocationService {
     public Location addLocation(String locationName) {
         var weatherResponseDTO = openWeatherService.getWeatherInfo(locationName);
 
-        var coordinatesDto = weatherResponseDTO.locationDto().coordinatesDto();
+        var coordinatesDto = weatherResponseDTO.getLocationDto().coordinatesDto();
 
         var latitude = coordinatesDto.latitude();
         var longitude = coordinatesDto.longitude();
 
-        locationName = weatherResponseDTO.locationDto().name();
+        locationName = weatherResponseDTO.getLocationDto().name();
 
         var location = Location.builder()
                 .name(locationName)
