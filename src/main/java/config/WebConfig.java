@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -19,6 +20,12 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
+    private static final String TEMPLATES_PATH = "classpath:/web/templates/";
+    private static final String TEMPLATES_SUFFIX = ".html";
+
+    private static final String WEB_RESOURCE_PATTERN = "/web/**";
+    private static final String WEB_RESOURCES_LOCATION = "classpath:/web/";
+
     private final ApplicationContext applicationContext;
 
     @Bean
@@ -26,8 +33,8 @@ public class WebConfig implements WebMvcConfigurer {
         var templateResolver = new SpringResourceTemplateResolver();
 
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("classpath:/templates/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix(TEMPLATES_PATH);
+        templateResolver.setSuffix(TEMPLATES_SUFFIX);
 
         return templateResolver;
     }
@@ -52,5 +59,11 @@ public class WebConfig implements WebMvcConfigurer {
         thymeleafViewResolver.setCharacterEncoding(characterEncoding);
 
         registry.viewResolver(thymeleafViewResolver);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(WEB_RESOURCE_PATTERN)
+                .addResourceLocations(WEB_RESOURCES_LOCATION);
     }
 }

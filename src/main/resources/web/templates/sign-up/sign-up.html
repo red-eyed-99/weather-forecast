@@ -8,17 +8,18 @@
 <form th:action="@{/sign-up}" method="post" th:object="${user}">
     <label for="username" th:object="${usernameError}">Username:</label>
     <input type="text" id="username" name="username" th:value="${user?.getUsername()}" required>
-    <p th:if="${usernameError != null}" th:text="${usernameError.getDefaultMessage()}"></p>
+    <p th:text="${usernameError?.getDefaultMessage()}"></p>
 
     <label for="password" th:object="${passwordError}">Password:</label>
     <input type="text" id="password" name="password" th:value="${user?.getPassword()}" required>
-    <p th:if="${passwordError != null}" th:text="${passwordError.getDefaultMessage()}"></p>
+    <p th:text="${passwordError?.getDefaultMessage()}"></p>
 
     <label for="repeatPassword" th:object="${repeatPasswordError}">Repeat password:</label>
     <input type="text" id="repeatPassword" name="repeatPassword" th:value="${user?.getRepeatPassword()}" required>
-    <p th:if="${repeatPasswordError != null}" th:text="${repeatPasswordError.getDefaultMessage()}"></p>
+    <p th:text="${repeatPasswordError?.getDefaultMessage()}"></p>
 
     <button type="submit">Sign Up</button>
+    <p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
 </form>
 </body>
 </html>
