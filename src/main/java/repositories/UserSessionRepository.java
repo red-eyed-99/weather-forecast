@@ -17,7 +17,7 @@ public class UserSessionRepository {
 
     public Optional<UserSessionDTO> findNotExpiredById(UUID id) {
         var hql = """
-                select us.id, us.expiresAt, u.id
+                select us.id, us.expiresAt, u.id, u.username
                 from UserSession us join us.user u
                 where us.id = :id and us.expiresAt > current_timestamp
                 """;
