@@ -1,4 +1,13 @@
 package dto.openweather;
 
-public record WindDTO(int speed, int degrees) {
+import utils.wind.WindDirection;
+
+public record WindDTO(
+
+        double speed,
+        int beaufortPoints,
+        int degrees,
+        double gust,
+        WindDirection direction
+) {
 }

@@ -1,4 +1,4 @@
-package utils.deserializers;
+package dto.deserializers;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -12,6 +12,10 @@ import dto.openweather.WeatherDTO;
 import dto.openweather.WeatherGroup;
 import dto.openweather.WeatherResponseDTO;
 import dto.openweather.WindDTO;
+import utils.date_time.DateTimeUtil;
+import utils.date_time.TimeOfDay;
+import utils.wind.BeaufortScaleMeasurer;
+import utils.wind.WindDirectionResolver;
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -52,20 +56,39 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
         var weatherJsonNode = jsonNode.path("weather");
         var sysJsonNode = jsonNode.path("sys");
 
-        var weatherGroupValue = weatherJsonNode.findPath("main")
-                .asText()
-                .toUpperCase();
+        var sunriseValue = sysJsonNode.path("sunrise").asLong();
+        var sunsetValue = sysJsonNode.path("sunset").asLong();
 
-        var weatherGroup = WeatherGroup.valueOf(weatherGroupValue);
+        var weatherGroup = getWeatherGroup(weatherJsonNode);
         var description = weatherJsonNode.findPath("description").asText();
+        var timeOfDay = getTimeOfDay(jsonNode);
         var temperatureDto = getTemperatureDto(jsonNode);
         var windDto = getWindDto(jsonNode);
         var humidity = jsonNode.path("main").path("humidity").asInt();
         var visibility = jsonNode.path("visibility").asInt();
-        var sunrise = sysJsonNode.path("sunrise").asLong();
-        var sunset = sysJsonNode.path("sunset").asLong();
+        var timezone = jsonNode.path("timezone").asInt();
+        var sunriseTime = DateTimeUtil.getTime(sunriseValue, timezone, "HH:mm");
+        var sunsetTime = DateTimeUtil.getTime(sunsetValue, timezone, "HH:mm");
 
-        return new WeatherDTO(weatherGroup, description, temperatureDto, windDto, humidity, visibility, sunrise, sunset);
+        return new WeatherDTO(
+                weatherGroup, description, timeOfDay, temperatureDto, windDto, humidity, visibility,
+                sunriseTime, sunsetTime
+        );
+    }
+
+    private WeatherGroup getWeatherGroup(JsonNode weatherJsonNode) {
+        var weatherGroupValue = weatherJsonNode.findPath("main")
+                .asText()
+                .toUpperCase();
+
+        return WeatherGroup.valueOf(weatherGroupValue);
+    }
+
+    private TimeOfDay getTimeOfDay(JsonNode jsonNode) {
+        var timestamp = jsonNode.path("dt").asLong();
+        var timezone = jsonNode.path("timezone").asInt();
+
+        return DateTimeUtil.determineTimeOfDay(timestamp, timezone);
     }
 
     private TemperatureDTO getTemperatureDto(JsonNode jsonNode) {
@@ -87,11 +110,12 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
     private WindDTO getWindDto(JsonNode jsonNode) {
         var windJsonNode = jsonNode.path("wind");
 
-        var speedValue = windJsonNode.path("speed").asDouble();
-
-        var speed = (int) Math.round(speedValue);
+        var speed = windJsonNode.path("speed").asDouble();
+        var beaufortPoints = BeaufortScaleMeasurer.measure(speed);
         var degrees = windJsonNode.path("deg").asInt();
+        var gust = windJsonNode.path("gust").asDouble();
+        var direction = WindDirectionResolver.resolve(degrees);
 
-        return new WindDTO(speed, degrees);
+        return new WindDTO(speed, beaufortPoints, degrees, gust, direction);
     }
 }

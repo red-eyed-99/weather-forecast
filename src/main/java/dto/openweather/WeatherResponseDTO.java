@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import utils.deserializers.WeatherResponseDtoDeserializer;
+import dto.deserializers.WeatherResponseDtoDeserializer;
 
 @JsonDeserialize(using = WeatherResponseDtoDeserializer.class)
 @RequiredArgsConstructor
