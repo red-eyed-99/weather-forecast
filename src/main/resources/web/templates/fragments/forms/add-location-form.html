@@ -1,0 +1,4 @@
+<form th:action="@{/users/add-location}" method="post" th:fragment="addLocationFormFragment(locationName)">
+    <input type="hidden" name="locationName" th:value="${locationName}">
+    <button class="add-location-button" type="submit"></button>
+</form>
