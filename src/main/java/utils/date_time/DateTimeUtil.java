@@ -29,8 +29,8 @@ public class DateTimeUtil {
         return TimeOfDay.NIGHT;
     }
 
-    public static String getTime(long timestamp, int timezoneOffset, String pattern) {
-        var offset = ZoneOffset.ofTotalSeconds(timezoneOffset);
+    public static String getTime(long timestamp, int timezoneOffsetSeconds, String pattern) {
+        var offset = ZoneOffset.ofTotalSeconds(timezoneOffsetSeconds);
         var formatter = DateTimeFormatter.ofPattern(pattern);
 
         return Instant.ofEpochSecond(timestamp)
