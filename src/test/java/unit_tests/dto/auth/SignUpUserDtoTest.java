@@ -1,4 +1,4 @@
-package unit_tests;
+package unit_tests.dto.auth;
 
 import dto.auth.SignUpUserDTO;
 import org.junit.jupiter.api.DisplayName;
