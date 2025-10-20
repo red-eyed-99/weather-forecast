@@ -85,10 +85,8 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
     }
 
     private TimeOfDay getTimeOfDay(JsonNode jsonNode) {
-        var timestamp = jsonNode.path("dt").asLong();
         var timezone = jsonNode.path("timezone").asInt();
-
-        return DateTimeUtil.determineTimeOfDay(timestamp, timezone);
+        return DateTimeUtil.determineTimeOfDay(timezone);
     }
 
     private TemperatureDTO getTemperatureDto(JsonNode jsonNode) {
