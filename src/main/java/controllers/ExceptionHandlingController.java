@@ -55,7 +55,7 @@ public class ExceptionHandlingController {
 
     @ExceptionHandler(LocationNotFoundException.class)
     @ResponseStatus(NOT_FOUND)
-    public String handleNotFoundException(LocationNotFoundException exception, Model model) {
+    public String handleLocationNotFoundException(LocationNotFoundException exception, Model model) {
         model.addAttribute(ERROR_MESSAGE, exception.getMessage());
         return SEARCH_LOCATIONS;
     }
