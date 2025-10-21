@@ -27,6 +27,9 @@ import static utils.UserTestData.USER_ID;
 @RequiredArgsConstructor
 class UserServiceIntegrationTest {
 
+    private static final int LOCATIONS_PER_PAGE = 6;
+    private static final int OFFSET = 0;
+
     private final UserService userService;
 
     private final OpenWeatherUriBuilder openWeatherUriBuilder;
@@ -46,7 +49,7 @@ class UserServiceIntegrationTest {
 
         userService.addLocation(USER_ID, locationName);
 
-        var user = userService.findById(USER_ID);
+        var user = userService.findByIdWithLocations(USER_ID, LOCATIONS_PER_PAGE, OFFSET);
 
         var addedLocation = user.getLocations().stream()
                 .filter(location -> Objects.equals(location.getId(), locationId))
@@ -78,7 +81,7 @@ class UserServiceIntegrationTest {
 
         userService.addLocation(USER_ID, locationName);
 
-        var user = userService.findById(USER_ID);
+        var user = userService.findByIdWithLocations(USER_ID, LOCATIONS_PER_PAGE, OFFSET);
 
         var addedLocation = user.getLocations().stream()
                 .filter(location -> Objects.equals(location.getName(), locationName))

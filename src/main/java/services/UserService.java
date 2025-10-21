@@ -30,8 +30,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findById(Long id) {
-        return userRepository.findByIdWithLocations(id)
+    public User findByIdWithLocations(Long id, int limit, int offset) {
+        return userRepository.findByIdWithLocations(id, limit, offset)
                 .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
