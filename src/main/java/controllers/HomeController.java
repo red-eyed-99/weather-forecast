@@ -11,6 +11,7 @@ import services.UserLocationsWeatherInfoService;
 import java.util.Objects;
 
 import static utils.ModelAttributeUtil.LOCATIONS_WEATHER;
+import static utils.ModelAttributeUtil.PAGE_INFO;
 import static utils.ModelAttributeUtil.USER_SESSION;
 import static utils.PagesUtil.HOME;
 
@@ -29,10 +30,14 @@ public class HomeController {
             var userSessionDto = (UserSessionDTO) model.getAttribute(USER_SESSION);
             var userId = Objects.requireNonNull(userSessionDto).userId();
 
-            var weatherResponseDtos = userLocationsWeatherInfoService.getWeatherInfo(userId, pageNumber);
+            var pageableResult = userLocationsWeatherInfoService.getWeatherInfo(userId, pageNumber);
+
+            var weatherResponseDtos = pageableResult.content();
+            var pageInfo = pageableResult.pageInfo();
 
             if (!weatherResponseDtos.isEmpty()) {
                 model.addAttribute(LOCATIONS_WEATHER, weatherResponseDtos);
+                model.addAttribute(PAGE_INFO, pageInfo);
             }
         }
 

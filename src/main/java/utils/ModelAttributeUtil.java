@@ -17,4 +17,6 @@ public class ModelAttributeUtil {
     public static final String REPEAT_PASSWORD_ERROR = "repeatPasswordError";
 
     public static final String ERROR_MESSAGE = "errorMessage";
+
+    public static final String PAGE_INFO = "pageInfo";
 }

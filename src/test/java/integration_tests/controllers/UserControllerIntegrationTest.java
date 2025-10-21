@@ -38,6 +38,7 @@ import static utils.SqlScriptUtil.INSERT_USER;
 import static utils.SqlScriptUtil.INSERT_USERS_LOCATIONS;
 import static utils.UserTestData.USER_ID;
 import static utils.UserTestData.USER_SESSION_ID;
+import static utils.WeatherCardsPaginator.LOCATIONS_PER_PAGE;
 
 @WebIntegrationTest
 @RequiredArgsConstructor
@@ -46,7 +47,6 @@ public class UserControllerIntegrationTest {
     private static final String USERS_ADD_LOCATION_URL = "/users/add-location";
     private static final String USERS_REMOVE_LOCATION_URL = "/users/remove-location";
 
-    private static final int LOCATIONS_PER_PAGE = 6;
     private static final int OFFSET = 0;
 
     private final WebApplicationContext webApplicationContext;

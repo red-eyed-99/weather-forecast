@@ -39,4 +39,12 @@ public class UserLocationRepository {
                 .setParameter(LOCATION_ID_PARAMETER, locationId)
                 .getSingleResult();
     }
+
+    public int getAddedLocationsNumber(Long userId) {
+        var sql = "select count(*) from users_locations where user_id = :userId";
+
+        return session.createNativeQuery(sql, Integer.class)
+                .setParameter(USER_ID_PARAMETER, userId)
+                .getSingleResult();
+    }
 }

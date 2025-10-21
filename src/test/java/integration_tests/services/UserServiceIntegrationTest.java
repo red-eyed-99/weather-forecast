@@ -22,12 +22,12 @@ import static utils.LocationTestData.MOSCOW;
 import static utils.SqlScriptUtil.INSERT_LOCATIONS;
 import static utils.SqlScriptUtil.INSERT_USER;
 import static utils.UserTestData.USER_ID;
+import static utils.WeatherCardsPaginator.LOCATIONS_PER_PAGE;
 
 @IntegrationTest
 @RequiredArgsConstructor
 class UserServiceIntegrationTest {
 
-    private static final int LOCATIONS_PER_PAGE = 6;
     private static final int OFFSET = 0;
 
     private final UserService userService;

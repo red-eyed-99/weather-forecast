@@ -25,4 +25,9 @@ public class UserLocationService {
     public boolean locationAdded(Long locationId, Long userId) {
         return userLocationRepository.locationAdded(locationId, userId);
     }
+
+    @Transactional(readOnly = true)
+    public int getAddedLocationsNumber(Long userId) {
+        return userLocationRepository.getAddedLocationsNumber(userId);
+    }
 }
