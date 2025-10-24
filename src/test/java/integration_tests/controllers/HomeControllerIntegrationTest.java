@@ -26,6 +26,7 @@ import static utils.CookieUtil.USER_SESSION_COOKIE;
 import static utils.LocationTestData.LONDON;
 import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.LOCATIONS_WEATHER;
+import static utils.ModelAttributeUtil.PAGE_INFO;
 import static utils.ModelAttributeUtil.USER_SESSION;
 import static utils.PagesUtil.HOME;
 import static utils.SqlScriptUtil.INSERT_LOCATIONS;
@@ -75,6 +76,7 @@ public class HomeControllerIntegrationTest {
                 .andExpectAll(
                         model().attributeExists(USER_SESSION),
                         model().attributeDoesNotExist(LOCATIONS_WEATHER),
+                        model().attributeDoesNotExist(PAGE_INFO),
                         view().name(HOME),
                         status().isOk()
                 );
@@ -106,6 +108,7 @@ public class HomeControllerIntegrationTest {
                 .andExpectAll(
                         model().attributeExists(USER_SESSION),
                         model().attributeExists(LOCATIONS_WEATHER),
+                        model().attributeExists(PAGE_INFO),
                         view().name(HOME),
                         status().isOk()
                 );
