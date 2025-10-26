@@ -41,6 +41,10 @@ public class SignUpUserDTO {
         this.passwordEncrypted = true;
     }
 
+    public SignUpUserDTO getCopy(SignUpUserDTO signUpUserDTO) {
+        return new SignUpUserDTO(username, password, repeatPassword);
+    }
+
     public static final class Fields {
         public static final String USERNAME = "username";
         public static final String PASSWORD = "password";

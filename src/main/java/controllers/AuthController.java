@@ -51,7 +51,7 @@ public class AuthController {
             return SIGN_UP;
         }
 
-        model.addAttribute(USER, getCopy(signUpUserDTO));
+        model.addAttribute(USER, signUpUserDTO.getCopy(signUpUserDTO));
 
         encodePassword(signUpUserDTO);
 
