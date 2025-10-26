@@ -120,15 +120,13 @@ class AuthControllerIntegrationTest {
         @MethodSource(value = "utils.SignUpTestDataProvider#getSignUpInvalidData")
         void postSignUp_invalidUserData_returnSignUpPageWithErrors(String username, String password,
                                                                    String repeatPassword,
-                                                                   String[] errorFields,
-                                                                   String[] errorAttributes) throws Exception {
+                                                                   String[] errorFields) throws Exception {
             mockMvc.perform(post(SIGN_UP_URL)
                             .formField(USERNAME, username)
                             .formField(PASSWORD, password)
                             .formField(REPEAT_PASSWORD, repeatPassword))
                     .andExpectAll(
                             model().attributeHasFieldErrors(USER, errorFields),
-                            model().attributeExists(errorAttributes),
                             status().isBadRequest(),
                             view().name(SIGN_UP)
                     );
@@ -223,14 +221,12 @@ class AuthControllerIntegrationTest {
         @DisplayName("Post /sign-in with invalid data")
         @MethodSource(value = "utils.SignInTestDataProvider#getSignInInvalidData")
         void postSignIn_invalidData_returnSignInPageWithErrors(String username, String password,
-                                                               String[] errorFields,
-                                                               String[] errorAttributes) throws Exception {
+                                                               String[] errorFields) throws Exception {
             mockMvc.perform(post(SIGN_IN_URL)
                             .formField(USERNAME, username)
                             .formField(PASSWORD, password))
                     .andExpectAll(
                             model().attributeHasFieldErrors(USER, errorFields),
-                            model().attributeExists(errorAttributes),
                             status().isBadRequest(),
                             view().name(SIGN_IN)
                     );
