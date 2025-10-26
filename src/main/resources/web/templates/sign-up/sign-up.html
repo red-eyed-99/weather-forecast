@@ -2,24 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign-up</title>
+    <meta name="keywords" content="weather, weather forecast, sign up">
+    <meta name="description" content="Sign Up">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/web/css/style.css}">
+    <title>Sign Up</title>
 </head>
 <body>
-<form th:action="@{/sign-up}" method="post" th:object="${user}">
-    <label for="username" th:object="${usernameError}">Username:</label>
-    <input type="text" id="username" name="username" th:value="${user?.getUsername()}" required>
-    <p th:text="${usernameError?.getDefaultMessage()}"></p>
+<header th:insert="~{fragments/header :: headerFragment(userSession=null, page='sign-up')}"></header>
+<main>
+    <ul class="error-block" th:if="${user != null and #fields.hasErrors('${user.*}')}">
+        <li th:each="error : ${#fields.errors('${user.*}')}" th:text="${error}"></li>
+    </ul>
 
-    <label for="password" th:object="${passwordError}">Password:</label>
-    <input type="text" id="password" name="password" th:value="${user?.getPassword()}" required>
-    <p th:text="${passwordError?.getDefaultMessage()}"></p>
+    <p class="error-block" th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
 
-    <label for="repeatPassword" th:object="${repeatPasswordError}">Repeat password:</label>
-    <input type="text" id="repeatPassword" name="repeatPassword" th:value="${user?.getRepeatPassword()}" required>
-    <p th:text="${repeatPasswordError?.getDefaultMessage()}"></p>
+    <form class="auth-form" th:action="@{/sign-up}" method="post" th:object="${user}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="${user?.getUsername()}" required>
 
-    <button type="submit">Sign Up</button>
-    <p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
-</form>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password" th:value="${user?.getPassword()}" required>
+
+        <label for="repeatPassword">Repeat password:</label>
+        <input type="text" id="repeatPassword" name="repeatPassword" th:value="${user?.getRepeatPassword()}" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</main>
 </body>
 </html>
