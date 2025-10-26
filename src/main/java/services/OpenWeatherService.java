@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
@@ -71,11 +72,18 @@ public class OpenWeatherService {
             }
 
             if (statusCode.isError()) {
-                log.error(exception.getMessage());
-                throw new OpenWeatherException("Unable to retrieve weather data, please try again later");
+                handleError(exception);
             }
+
+        } catch (ResourceAccessException exception) {
+            handleError(exception);
         }
 
         return weatherResponseDTO;
+    }
+
+    private void handleError(RuntimeException exception) {
+        log.error(exception.getMessage());
+        throw new OpenWeatherException("Unable to retrieve weather data, please try again later");
     }
 }

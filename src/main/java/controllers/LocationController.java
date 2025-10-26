@@ -2,6 +2,9 @@ package controllers;
 
 import dto.auth.UserSessionDTO;
 import dto.openweather.WeatherResponseDTO;
+import exceptions.LocationNotFoundException;
+import exceptions.OpenWeatherException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import services.LocationService;
 import services.OpenWeatherService;
 import services.UserLocationService;
+import utils.ExceptionHandler;
 import utils.ExtraSpacesRemover;
 import validation.annotations.ValidLocationName;
 import java.util.Objects;
@@ -31,10 +35,18 @@ public class LocationController {
     private final UserLocationService userLocationService;
 
     @GetMapping
-    public String searchLocations(Model model, @RequestParam(name = "locationName") @ValidLocationName String locationName) {
+    public String searchLocations(Model model, @RequestParam(name = "locationName") @ValidLocationName String locationName,
+                                  HttpServletResponse response) {
+
         locationName = ExtraSpacesRemover.removeExtraSpaces(locationName);
 
-        var weatherResponseDto = openWeatherService.getWeatherInfo(locationName);
+        var weatherResponseDto = (WeatherResponseDTO) null;
+
+        try {
+            weatherResponseDto = openWeatherService.getWeatherInfo(locationName);
+        } catch (LocationNotFoundException | OpenWeatherException exception) {
+            return ExceptionHandler.handle(exception, model, response, SEARCH_LOCATIONS);
+        }
 
         if (model.containsAttribute(USER_SESSION)) {
             var userSessionDto = (UserSessionDTO) model.getAttribute(USER_SESSION);

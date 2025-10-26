@@ -1,6 +1,10 @@
 package controllers;
 
 import dto.auth.UserSessionDTO;
+import dto.openweather.WeatherResponseDTO;
+import dto.pageable.PageableResult;
+import exceptions.OpenWeatherException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import services.UserLocationsWeatherInfoService;
+import utils.ExceptionHandler;
+import java.util.List;
 import java.util.Objects;
 
 import static utils.ModelAttributeUtil.LOCATIONS_WEATHER;
@@ -24,15 +30,22 @@ public class HomeController {
     @GetMapping
     public String showHomePage(@RequestParam(name = "page", required = false, defaultValue = "1")
                                @Min(value = 1, message = "Page starts with '1'") int pageNumber,
-                               Model model) {
+                               Model model, HttpServletResponse response) {
 
         if (model.containsAttribute(USER_SESSION)) {
             var userSessionDto = (UserSessionDTO) model.getAttribute(USER_SESSION);
             var userId = Objects.requireNonNull(userSessionDto).userId();
 
-            var pageableResult = userLocationsWeatherInfoService.getWeatherInfo(userId, pageNumber);
+            var pageableResult = (PageableResult<List<WeatherResponseDTO>>) null;
+
+            try {
+                pageableResult = userLocationsWeatherInfoService.getWeatherInfo(userId, pageNumber);
+            } catch (OpenWeatherException exception) {
+                return ExceptionHandler.handle(exception, model, response, HOME);
+            }
 
             var weatherResponseDtos = pageableResult.content();
+
             var pageInfo = pageableResult.pageInfo();
 
             if (!weatherResponseDtos.isEmpty()) {

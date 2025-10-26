@@ -34,7 +34,6 @@ import static utils.CookieUtil.USER_SESSION_COOKIE;
 import static utils.LocationTestData.MOSCOW;
 import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.LOCATION_WEATHER;
-import static utils.PagesUtil.HOME;
 import static utils.PagesUtil.SEARCH_LOCATIONS;
 import static utils.SqlScriptUtil.INSERT_LOCATIONS;
 import static utils.SqlScriptUtil.INSERT_SESSION;
@@ -126,7 +125,7 @@ class LocationControllerIntegrationTest {
                             .queryParam(LOCATION_NAME_PARAMETER, MOSCOW))
                     .andExpectAll(
                             model().attribute(ERROR_MESSAGE, "Unable to retrieve weather data, please try again later"),
-                            view().name(HOME),
+                            view().name(SEARCH_LOCATIONS),
                             status().isInternalServerError()
                     );
         }
