@@ -107,31 +107,7 @@
             <a th:href="@{|/?page=${pageInfo.previousBlockPageNumber()}|}"><-</a>
         </li>
 
-        <li th:with="pageNumber=${pageInfo.pageNumbers()[0]}"
-            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
-
-            <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
-        </li>
-
-        <li th:if="${pageInfo.pageNumbers().length > 1}" th:with="pageNumber=${pageInfo.pageNumbers()[1]}"
-            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
-
-            <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
-        </li>
-
-        <li th:if="${pageInfo.pageNumbers().length > 2}" th:with="pageNumber=${pageInfo.pageNumbers()[2]}"
-            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
-
-            <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
-        </li>
-
-        <li th:if="${pageInfo.pageNumbers().length > 3}" th:with="pageNumber=${pageInfo.pageNumbers()[3]}"
-            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
-
-            <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
-        </li>
-
-        <li th:if="${pageInfo.pageNumbers().length > 4}" th:with="pageNumber=${pageInfo.pageNumbers()[4]}"
+        <li th:each="pageNumber : ${pageInfo.pageNumbers()}"
             th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
 
             <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
