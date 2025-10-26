@@ -13,6 +13,8 @@
 <main>
     <form th:replace="~{fragments/forms/search-location-form}"></form>
 
+    <p class="error-block" th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+
     <div class="weather-cards-container" th:if="${locationsWeather != null}" th:object="${locationsWeather}">
 
         <div class="weather-card" th:each="locationWeather : ${locationsWeather}"
