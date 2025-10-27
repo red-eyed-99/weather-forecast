@@ -1,23 +1,25 @@
-<header class="page-header">
-    <div class="container" th:fragment="headerFragment(page)">
+<header>
+    <div class="page-header-container" th:fragment="headerFragment(page)">
         <nav class="navbar">
             <ul class="navbar-items">
                 <li class="navbar-item">
                     <a th:href="@{/}" th:classappend="${page} == 'home' ? 'current-page' : ''">Home</a>
                 </li>
                 <li class="navbar-item" th:if="${userSession == null}">
-                    <a th:href="@{/sign-in}">Sign In</a>
+                    <a class="standard-button" th:href="@{/sign-in}">Sign In</a>
                 </li>
                 <li class="navbar-item" th:if="${userSession == null}">
-                    <a th:href="@{/sign-up}">Sign Up</a>
+                    <a class="standard-button" th:href="@{/sign-up}">Sign Up</a>
+                </li>
+                <li class="navbar-item" th:if="${userSession != null}">
+                    <p class="username" th:text="${userSession.username()}"></p>
                 </li>
                 <li class="navbar-item" th:if="${userSession != null}">
                     <form th:action="@{/logout}" method="post">
-                        <button type="submit">Log Out</button>
+                        <button class="standard-button" type="submit">Log Out</button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <p class="username" th:if="${userSession != null}" th:text="${userSession.username()}"></p>
     </div>
 </header>
