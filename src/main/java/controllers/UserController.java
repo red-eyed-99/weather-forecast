@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import services.UserService;
+import utils.StringUtil;
 import validation.validators.LocationNameValidator;
 import java.util.Objects;
 
@@ -29,6 +30,8 @@ public class UserController {
 
     @PostMapping("/add-location")
     public String addLocation(Model model, @RequestParam("locationName") String locationName, HttpServletResponse response) {
+        locationName = StringUtil.removeDiacritics(locationName);
+
         locationNameValidator.validate(locationName);
 
         if (!model.containsAttribute(USER_SESSION)) {
@@ -48,6 +51,8 @@ public class UserController {
 
     @PostMapping("/remove-location")
     public String removeLocation(Model model, @RequestParam("locationName") String locationName, HttpServletResponse response) {
+        locationName = StringUtil.removeDiacritics(locationName);
+
         locationNameValidator.validate(locationName);
 
         if (!model.containsAttribute(USER_SESSION)) {

@@ -15,7 +15,7 @@ import services.LocationService;
 import services.OpenWeatherService;
 import services.UserLocationService;
 import utils.ExceptionHandler;
-import utils.ExtraSpacesRemover;
+import utils.StringUtil;
 import validation.annotations.ValidLocationName;
 import java.util.Objects;
 
@@ -38,7 +38,7 @@ public class LocationController {
     public String searchLocations(Model model, @RequestParam(name = "locationName") @ValidLocationName String locationName,
                                   HttpServletResponse response) {
 
-        locationName = ExtraSpacesRemover.removeExtraSpaces(locationName);
+        locationName = StringUtil.removeExtraSpaces(locationName);
 
         var weatherResponseDto = (WeatherResponseDTO) null;
 

@@ -4,7 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
-import utils.ExtraSpacesRemover;
+import utils.StringUtil;
 import validation.annotations.ValidLocationName;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -18,7 +18,7 @@ public class LocationNameValidator implements ConstraintValidator<ValidLocationN
 
     @Override
     public boolean isValid(String locationName, ConstraintValidatorContext context) {
-        locationName = ExtraSpacesRemover.removeExtraSpaces(locationName);
+        locationName = StringUtil.removeExtraSpaces(locationName);
 
         if (locationName.isBlank()) {
             setCustomMessage(context, "Enter location name. Example: Moscow");

@@ -5,6 +5,7 @@ import models.entities.Location;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repositories.LocationRepository;
+import utils.StringUtil;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,8 @@ public class LocationService {
         var longitude = coordinatesDto.longitude();
 
         locationName = weatherResponseDTO.getLocationDto().name();
+
+        locationName = StringUtil.removeDiacritics(locationName);
 
         var location = Location.builder()
                 .name(locationName)
