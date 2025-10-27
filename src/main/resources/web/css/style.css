@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: "Inter", "sans-serif";
+    font-size: 16px;
+}
+
+.page-header-container {
+    display: flex;
+    align-items: center;
+    min-width: 430px;
+    height: 76px;
+    background-image: url("/weather-forecast/web/icons/logo.svg"),
+    linear-gradient(
+            90deg,
+            rgba(27, 156, 226, 1) 0%,
+            rgba(113, 202, 250, 1) 100%
+    );
+    background-position: 30px center, 0 0;
+    background-size: 76px 76px, auto;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    margin-left: 140px;
+    width: 100%;
+}
+
+.navbar-items {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-item:first-child {
+    margin-right: auto;
+}
+
+.navbar-item:last-child {
+    margin-right: 30px;
+}
+
+.navbar-item:not(:first-child, :last-child) {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.current-page {
+    position: relative;
+    font-weight: bold;
+    background: #fa6c21;
+    background: linear-gradient(to right, #fa6c21 0%, #ffd358 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.current-page::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background: linear-gradient(to right, #fa6c21 0%, #ffd358 100%);
+}
+
+.username {
+    margin: 0;
+    margin-right: 42px;
+    font-weight: bold;
+    background: #d0f1ff;
+    background: linear-gradient(to right, #d0f1ff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.standard-button {
+    width: 135px;
+    height: 50px;
+    font-family: "Inter", "sans-serif";
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    color: #000000;
+    background: #ffffff;
+    background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(167, 221, 255, 1) 100%
+    );
+    border: 0;
+    border-radius: 10px;
+}
+
+.standard-button:hover {
+    background: #ffde81;
+    background: linear-gradient(
+            180deg,
+            rgba(255, 222, 129, 1) 0%,
+            rgba(255, 156, 103, 1) 100%
+    );
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a.standard-button {
+    display: inline-block;
+    line-height: 50px;
+    text-decoration: none;
+}
