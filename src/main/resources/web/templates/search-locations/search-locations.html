@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="weather, weather forecast, search locations">
+    <meta name="description" content="Search Locations">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/web/css/style.css}">
+    <title>Search Locations</title>
+</head>
+<body>
+<header th:insert="~{fragments/header :: headerFragment(page='searchLocations')}"></header>
+<main>
+    <form th:replace="~{fragments/forms/search-location-form}"></form>
+    <p th:replace="~{fragments/error/single-error-block}"></p>
+
+    <div class="weather-card" th:if="${locationWeather != null}" th:object="${locationWeather}"
+         th:with="locationInfo=${locationWeather.getLocationDto()}, weatherInfo=${locationWeather.weatherDto},
+                  temperatureInfo=${weatherInfo.temperatureDto()}">
+
+        <div class="location-info">
+            <h2 th:text="${locationInfo.name()}"></h2>
+
+            <img th:replace="~{fragments/weather-card/country-flag}" src="" alt="">
+
+            <form th:replace="${locationWeather.isLocationAdded()}
+                  ? ~{fragments/forms/remove-location-form}
+                  : ~{fragments/forms/add-location-form}">
+            </form>
+        </div>
+
+        <p th:replace="~{fragments/weather-card/locations-coordinates}"></p>
+        <div th:replace="~{fragments/weather-card/main-weather-info}"></div>
+        <div th:replace="~{fragments/weather-card/detailed-weather-info}"></div>
+    </div>
+</main>
+</body>
+</html>
