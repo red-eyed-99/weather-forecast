@@ -1,0 +1,3 @@
+<ul class="error-block" th:if="${user != null and #fields.hasErrors('${user.*}')}">
+    <li th:each="error : ${#fields.errors('${user.*}')}" th:text="${error}"></li>
+</ul>

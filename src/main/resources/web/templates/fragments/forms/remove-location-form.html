@@ -1,4 +1,4 @@
-<form th:action="@{/users/remove-location}" method="post" th:fragment="removeLocationFormFragment(locationName)">
-    <input type="hidden" name="locationName" th:value="${locationName}">
+<form th:action="@{/users/remove-location}" method="post">
+    <input type="hidden" name="locationName" th:value="${locationInfo.name()}">
     <button class="remove-location-button" type="submit"></button>
 </form>

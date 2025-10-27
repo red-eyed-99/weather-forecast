@@ -1,0 +1,8 @@
+<div th:classappend="'main-weather-info ' + ${weatherInfo.getFullDescriptionWithHyphens()}">
+
+    <h3 class="weather-description" th:text="${weatherInfo.description().toUpperCase()}"></h3>
+
+    <p class="current-temp" th:inline="text">
+        [[${temperatureInfo.current()}]]<sup class="celsius">&#8451;</sup>
+    </p>
+</div>

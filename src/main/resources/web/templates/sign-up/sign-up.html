@@ -9,13 +9,10 @@
     <title>Sign Up</title>
 </head>
 <body>
-<header th:insert="~{fragments/header :: headerFragment(userSession=null, page='sign-up')}"></header>
+<header th:insert="~{fragments/header :: headerFragment(page='sign-up')}"></header>
 <main>
-    <ul class="error-block" th:if="${user != null and #fields.hasErrors('${user.*}')}">
-        <li th:each="error : ${#fields.errors('${user.*}')}" th:text="${error}"></li>
-    </ul>
-
-    <p class="error-block" th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+    <ul th:replace="~{fragments/error/multi-error-block}"></ul>
+    <p th:replace="~{fragments/error/single-error-block}"></p>
 
     <form class="auth-form" th:action="@{/sign-up}" method="post" th:object="${user}">
         <label for="username">Username:</label>

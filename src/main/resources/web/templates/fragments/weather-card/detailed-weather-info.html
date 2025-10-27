@@ -1,0 +1,55 @@
+<div class="detailed-weather-info">
+    <dl class="temp-info">
+        <dt>min:</dt>
+        <dd th:inline="text">
+            [[${temperatureInfo.min()}]]<sup class="celsius">&#8451;</sup>
+        </dd>
+
+        <dt>max:</dt>
+        <dd th:inline="text">
+            [[${temperatureInfo.max()}]]<sup class="celsius">&#8451;</sup>
+        </dd>
+
+        <dt>feels like:</dt>
+        <dd th:inline="text">
+            [[${temperatureInfo.feelsLike()}]]<sup class="celsius">&#8451;</sup>
+        </dd>
+    </dl>
+
+    <dl th:class="'wind-info beaufort-points-' + ${windInfo.beaufortPoints()}"
+        th:with="windInfo=${weatherInfo.windDto()}">
+
+        <dt>speed:</dt>
+        <dd th:text="${windInfo.speed()} > 0.0 ? ${windInfo.speed()} : '-'"></dd>
+
+        <dt>gust:</dt>
+        <dd th:text="${windInfo.gust()} > 0.0 ? ${windInfo.gust()} : '-'"></dd>
+
+        <dt>direction:</dt>
+        <dd>
+            <img class="wind-direction" width="12" height="12"
+                 th:src="@{'/web/icons/weather/wind/directions/direction_' + ${windInfo.direction().toString().toLowerCase()} + '.svg'}"
+                 th:alt="${windInfo.direction().toString()}">
+        </dd>
+    </dl>
+
+    <dl class="humidity-info">
+        <dt>humidity:</dt>
+        <dd th:text="${weatherInfo.humidity()} + '%'"></dd>
+    </dl>
+
+    <dl class="visibility-info">
+        <dt>visibility:</dt>
+        <dd th:text="${weatherInfo.visibility()} + ' km'"></dd>
+    </dl>
+
+    <dl class="sunrise-info">
+        <dt>sunrise:</dt>
+        <dd th:text="${weatherInfo.sunrise()}"></dd>
+    </dl>
+
+    <dl class="sunset-info">
+        <dt>sunset:</dt>
+        <dd th:text="${weatherInfo.sunset()}"></dd>
+    </dl>
+</div>

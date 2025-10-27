@@ -1,0 +1,3 @@
+<p class="location-coordinates" th:with="coordinates=${locationInfo.coordinatesDto()}"
+   th:text="${coordinates.latitude()} + ' ' + ${coordinates.longitude()}">
+</p>
