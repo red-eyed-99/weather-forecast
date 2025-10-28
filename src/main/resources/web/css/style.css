@@ -7,7 +7,7 @@ body {
 .page-header-container {
     display: flex;
     align-items: center;
-    min-width: 430px;
+    min-width: 600px;
     height: 76px;
     background-image: url("/weather-forecast/web/icons/logo.svg"),
     linear-gradient(
@@ -33,6 +33,11 @@ body {
     list-style: none;
 }
 
+.navbar-item a {
+    font-weight: bold;
+    color: #000000;
+}
+
 .navbar-item:first-child {
     margin-right: auto;
 }
@@ -46,7 +51,8 @@ body {
     margin-right: 12px;
 }
 
-.current-page {
+.current-page,
+.standard-link:hover {
     position: relative;
     font-weight: bold;
     background: #fa6c21;
@@ -56,7 +62,8 @@ body {
     text-decoration: none;
 }
 
-.current-page::after {
+.current-page::after,
+.standard-link:hover::after {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -109,5 +116,6 @@ body {
 a.standard-button {
     display: inline-block;
     line-height: 50px;
+    font-weight: 900;
     text-decoration: none;
 }

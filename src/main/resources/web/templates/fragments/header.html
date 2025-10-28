@@ -3,7 +3,7 @@
         <nav class="navbar">
             <ul class="navbar-items">
                 <li class="navbar-item">
-                    <a th:href="@{/}" th:classappend="${page} == 'home' ? 'current-page' : ''">Home</a>
+                    <a class="standard-link" th:href="@{/}" th:classappend="${page} == 'home' ? 'current-page' : ''">Home</a>
                 </li>
                 <li class="navbar-item" th:if="${userSession == null}">
                     <a class="standard-button" th:href="@{/sign-in}">Sign In</a>
