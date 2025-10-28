@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import services.AuthService;
 import utils.CookieUtil;
+import utils.ExceptionHandler;
 import utils.PasswordEncoder;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static jakarta.servlet.http.HttpServletResponse.SC_CONFLICT;
-import static utils.ModelAttributeUtil.ERROR_MESSAGE;
 import static utils.ModelAttributeUtil.USER;
 import static utils.ModelAttributeUtil.USER_SESSION;
 import static utils.PagesUtil.REDIRECT_HOME;
@@ -60,9 +59,7 @@ public class AuthController {
         try {
             userSession = authService.signUp(signUpUserDTO);
         } catch (UserAlreadyExistException exception) {
-            model.addAttribute(ERROR_MESSAGE, exception.getMessage());
-            response.setStatus(SC_CONFLICT);
-            return SIGN_UP;
+            return ExceptionHandler.handle(exception, model, response, SIGN_UP);
         }
 
         CookieUtil.addUserSessionCookie(userSession, response);
