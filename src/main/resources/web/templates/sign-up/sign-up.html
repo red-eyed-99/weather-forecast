@@ -13,18 +13,18 @@
 <main>
     <ul th:replace="~{fragments/error/multi-error-block}"></ul>
     <p th:replace="~{fragments/error/single-error-block}"></p>
-
+    <h1 class="auth-header">Sign Up</h1>
     <form class="auth-form" th:action="@{/sign-up}" method="post" th:object="${user}">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" th:value="${user?.getUsername()}" required>
+        <input type="text" id="username" name="username" th:value="${user?.getUsername()}" autocomplete="off" required>
 
         <label for="password">Password:</label>
-        <input type="text" id="password" name="password" th:value="${user?.getPassword()}" required>
+        <input type="text" id="password" name="password" th:value="${user?.getPassword()}" autocomplete="off" required>
 
         <label for="repeatPassword">Repeat password:</label>
-        <input type="text" id="repeatPassword" name="repeatPassword" th:value="${user?.getRepeatPassword()}" required>
+        <input type="text" id="repeatPassword" name="repeatPassword" th:value="${user?.getRepeatPassword()}" autocomplete="off" required>
 
-        <button type="submit">Sign Up</button>
+        <button class="standard-button big-button" type="submit">Sign Up</button>
     </form>
 </main>
 </body>

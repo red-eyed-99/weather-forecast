@@ -1,13 +1,44 @@
 body {
     margin: 0;
+    min-width: 620px;
     font-family: "Inter", "sans-serif";
     font-size: 16px;
+}
+
+input {
+    padding-left: 22px;
+    font-size: 20px;
+    border: 0;
+    border-radius: 10px;
+    background: #EFEFEF;
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0 0/10px 10px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0/10px 10px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0 100%/10px 10px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/10px 10px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 8px) calc(100% - 20px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 8px) no-repeat,
+    linear-gradient(90deg, #fa6c21 0%, #FFD358 100%);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+input::-webkit-search-cancel-button {
+    height: 32px;
+    width: 32px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("/weather-forecast/web/icons/cancel.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+input::-webkit-search-cancel-button:hover {
+    cursor: pointer;
 }
 
 .page-header-container {
     display: flex;
     align-items: center;
-    min-width: 600px;
     height: 76px;
     background-image: url("/weather-forecast/web/icons/logo.svg"),
     linear-gradient(
@@ -101,6 +132,11 @@ body {
     border-radius: 10px;
 }
 
+.big-button {
+    width: 146px;
+    height: 78px;
+}
+
 .standard-button:hover {
     background: #ffde81;
     background: linear-gradient(
@@ -118,4 +154,88 @@ a.standard-button {
     line-height: 50px;
     font-weight: 900;
     text-decoration: none;
+}
+
+.search-location-form {
+    margin-left: auto;
+    margin-top: 60px;
+    margin-right: auto;
+    margin-bottom: 108px;
+    width: 580px;
+    height: 50px;
+}
+
+.auth-header {
+    margin-top: 50px;
+    font-size: 48px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.auth-form {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background: #1C9CE2;
+    background: linear-gradient(
+            -180deg,
+            rgba(28, 156, 226, 1) 0%,
+            rgba(113, 202, 250, 1) 100%
+    );
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25),
+    4px 0 4px 0 rgba(0, 0, 0, 0.25),
+    0 -4px 4px 0 rgba(0, 0, 0, 0.25),
+    -4px 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.auth-form label {
+    display: block;
+    margin-left: 40px;
+    margin-bottom: 6px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.auth-form input {
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+.location-name-input {
+    width: 100%;
+    height: 100%;
+}
+
+.auth-form .standard-button {
+    display: block;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: auto;
+}
+
+.error-block {
+    width: 570px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    text-align: center;
+    list-style: none;
+    background-color: #ff9c9c;
+    border-radius: 5px;
+}
+
+.error-block li {
+    padding-bottom: 15px;
+}
+
+.error-block li:last-child {
+    padding-bottom: 0;
 }
