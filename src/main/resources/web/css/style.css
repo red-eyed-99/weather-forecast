@@ -249,3 +249,88 @@ a.standard-button {
 .error-block li:last-child {
     padding-bottom: 0;
 }
+
+.weather-card {
+    width: 366px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25),
+    4px 0 4px 0 rgba(0, 0, 0, 0.25),
+    0 -4px 4px 0 rgba(0, 0, 0, 0.25),
+    -4px 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.location-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #ffffff;
+    background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(238, 238, 238, 1) 100%
+    );
+}
+
+.country-flag {
+    order: -1;
+    margin-left: 10px;
+}
+
+.location-name {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 260px;
+    font-weight: 900;
+    font-size: 18px;
+    word-wrap: break-word;
+}
+
+.add-location-button,
+.remove-location-button {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border: 0;
+    background: transparent;
+    background-size: 32px;
+}
+
+.add-location-button {
+    background-image: url("/weather-forecast/web/icons/add.svg");
+}
+
+.remove-location-button {
+    background-image: url("/weather-forecast/web/icons/remove.svg");
+}
+
+.add-location-button:hover {
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(84%) sepia(38%) saturate(4385%) hue-rotate(105deg) brightness(96%) contrast(89%);
+}
+
+.remove-location-button:hover {
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(30%) sepia(95%) saturate(7008%) hue-rotate(321deg) brightness(91%) contrast(103%);
+}
+
+.location-coordinates {
+    width: 100%;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: center;
+    border-top: 2px solid #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+
+}
+
+.latitude {
+    margin-right: 70px;
+}

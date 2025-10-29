@@ -21,12 +21,12 @@
                       temperatureInfo=${weatherInfo.temperatureDto()}">
 
             <div class="location-info">
-                <h2 th:text="${locationInfo.name()}"></h2>
+                <h2 class="location-name" th:text="${locationInfo.name()}"></h2>
                 <img th:replace="~{fragments/weather-card/country-flag}" src="" alt="">
                 <form th:replace="~{fragments/forms/remove-location-form}"></form>
+                <p th:replace="~{fragments/weather-card/locations-coordinates}"></p>
             </div>
 
-            <p th:replace="~{fragments/weather-card/locations-coordinates}"></p>
             <div th:replace="~{fragments/weather-card/main-weather-info}"></div>
             <div th:replace="~{fragments/weather-card/detailed-weather-info}"></div>
         </div>
