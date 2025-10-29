@@ -334,3 +334,102 @@ a.standard-button {
 .latitude {
     margin-right: 70px;
 }
+
+.main-weather-info {
+    position: relative;
+    height: 172px;
+    background-position: 35% 10%;
+    background-repeat: no-repeat;
+}
+
+.current-temp {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    margin: 0;
+    font-size: 48px;
+}
+
+.celsius {
+    font-size: 16px;
+    vertical-align: top;
+    margin-left: -12px;
+}
+
+.weather-description {
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    transform: translateX(-50%);
+    max-width: 90%;
+    margin: 0;
+    font-size: 15px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+[class$="-night"] {
+    color: #ffffff;
+}
+
+/* --- Main weather info icons and background styles --- */
+
+/* Clear Sky */
+
+.clear-sky-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/clear_sky_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(226, 246, 255, 1) 100%
+    );
+}
+
+div.clear-sky-day ~ .detailed-weather-info {
+    background-color: #e2f5fc;
+}
+
+.clear-sky-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/clear_sky_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(56, 33, 168, 1) 0%,
+            rgba(127, 80, 196, 1) 100%
+    );
+}
+
+div.clear-sky-night ~ .detailed-weather-info {
+    background-color: #7f50c4;
+}
+
+/* Overcast Clouds */
+
+.overcast-clouds-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/clouds/overcast_clouds_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(240, 240, 240, 1) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% -15%;
+}
+
+div.overcast-clouds-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.overcast-clouds-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/clouds/overcast_clouds_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.overcast-clouds-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
