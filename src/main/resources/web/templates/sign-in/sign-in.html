@@ -21,6 +21,10 @@
         <label for="password">Password:</label>
         <input type="text" id="password" name="password" th:value="${user?.password()}" autocomplete="off" required>
 
+        <p class="sign-up-offer">Don't have an account yet? -
+            <a class="standard-link" th:href="@{/sign-up}">Sign Up</a>
+        </p>
+
         <button class="standard-button big-button" type="submit">Sign In</button>
     </form>
 </main>

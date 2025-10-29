@@ -82,6 +82,10 @@ input::-webkit-search-cancel-button:hover {
     margin-right: 12px;
 }
 
+.standard-link {
+    color: #000000;
+}
+
 .current-page,
 .standard-link:hover {
     position: relative;
@@ -212,6 +216,12 @@ a.standard-button {
 .location-name-input {
     width: 100%;
     height: 100%;
+}
+
+.sign-up-offer {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 50px;
 }
 
 .auth-form .standard-button {
