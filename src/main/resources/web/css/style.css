@@ -254,7 +254,7 @@ a.standard-button {
     width: 366px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25),
     4px 0 4px 0 rgba(0, 0, 0, 0.25),
     0 -4px 4px 0 rgba(0, 0, 0, 0.25),
@@ -266,7 +266,7 @@ a.standard-button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 15px;
     background: #ffffff;
     background: linear-gradient(
             0deg,
@@ -356,6 +356,11 @@ a.standard-button {
     margin-left: -12px;
 }
 
+.celsius-small {
+    font-size: 8px;
+    margin-left: -2px;
+}
+
 .weather-description {
     position: absolute;
     left: 50%;
@@ -374,8 +379,86 @@ a.standard-button {
     color: #ffffff;
 }
 
-.temp-info {
+.detailed-weather-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.detailed-weather-info dl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    background-size: 30px 30px, auto;
+    background-position: 12px center, 0 0;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.detailed-weather-info dt {
+    margin-left: 30%;
+    margin-right: 3px;
+}
+
+.detailed-weather-info dd {
+    margin: 0;
+}
+
+.big-description-list {
+    height: 64px;
+}
+
+.small-description-list {
+    height: 44px;
+}
+
+.temp-info {
+    background-image: url("../icons/thermometer.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.humidity-info {
+    background-image: url("../icons/humidity.svg"),
+    linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.sunrise-info {
+    background-image: url("../icons/sunrise.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.sunset-info {
+    background-image: url("../icons/sunset.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.wind-direction {
+    margin-left: 10px;
 }
 
 /* --- Main weather info icons and background styles --- */
