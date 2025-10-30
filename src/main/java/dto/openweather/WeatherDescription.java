@@ -2,6 +2,9 @@ package dto.openweather;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Getter
@@ -67,7 +70,22 @@ public enum WeatherDescription {
     DUST("dust"),
     VOLCANIC_ASH("volcanic ash"),
     SQUALLS("squalls"),
-    TORNADO("tornado");
+    TORNADO("tornado"),
+
+    UNKNOWN("unknown");
+
+    private static final Map<String, WeatherDescription> ENUMS_BY_DESCRIPTION = new HashMap<>();
+
+    static {
+        for (var value : values()) {
+            ENUMS_BY_DESCRIPTION.put(value.description, value);
+        }
+    }
 
     private final String description;
+
+    public static WeatherDescription getByDescription(String description) {
+        var weatherDescription = ENUMS_BY_DESCRIPTION.get(description);
+        return Objects.requireNonNullElse(weatherDescription, WeatherDescription.UNKNOWN);
+    }
 }

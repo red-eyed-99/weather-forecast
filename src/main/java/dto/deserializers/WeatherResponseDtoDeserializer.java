@@ -9,6 +9,7 @@ import dto.openweather.CoordinatesDTO;
 import dto.openweather.LocationDTO;
 import dto.openweather.TemperatureDTO;
 import dto.openweather.WeatherDTO;
+import dto.openweather.WeatherDescription;
 import dto.openweather.WeatherGroup;
 import dto.openweather.WeatherResponseDTO;
 import dto.openweather.WindDTO;
@@ -60,7 +61,7 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
         var sunsetValue = sysJsonNode.path("sunset").asLong();
 
         var weatherGroup = getWeatherGroup(weatherJsonNode);
-        var description = weatherJsonNode.findPath("description").asText();
+        var description = getWeatherDescription(weatherJsonNode);
         var timeOfDay = getTimeOfDay(jsonNode);
         var temperatureDto = getTemperatureDto(jsonNode);
         var windDto = getWindDto(jsonNode);
@@ -82,6 +83,11 @@ public class WeatherResponseDtoDeserializer extends JsonDeserializer<WeatherResp
                 .toUpperCase();
 
         return WeatherGroup.valueOf(weatherGroupValue);
+    }
+
+    private WeatherDescription getWeatherDescription(JsonNode weatherJsonNode) {
+        var description = weatherJsonNode.findPath("description").asText();
+        return WeatherDescription.getByDescription(description);
     }
 
     private TimeOfDay getTimeOfDay(JsonNode jsonNode) {

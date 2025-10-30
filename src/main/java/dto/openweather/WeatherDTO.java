@@ -5,7 +5,7 @@ import utils.date_time.TimeOfDay;
 public record WeatherDTO(
 
         WeatherGroup group,
-        String description,
+        WeatherDescription description,
         TimeOfDay timeOfDay,
         TemperatureDTO temperatureDto,
         WindDTO windDto,
@@ -18,5 +18,8 @@ public record WeatherDTO(
         return description.getDescription()
                 .replaceAll("[\\s/]", "-") + "-" + timeOfDay.getValue();
     }
+
+    public String getDescriptionInUpperCase() {
+        return description.getDescription().toUpperCase();
     }
 }
