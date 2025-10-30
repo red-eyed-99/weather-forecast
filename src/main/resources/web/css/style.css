@@ -27,7 +27,7 @@ input::-webkit-search-cancel-button {
     width: 32px;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url("/weather-forecast/web/icons/cancel.svg");
+    background-image: url("../icons/cancel.svg");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -40,7 +40,7 @@ input::-webkit-search-cancel-button:hover {
     display: flex;
     align-items: center;
     height: 76px;
-    background-image: url("/weather-forecast/web/icons/logo.svg"),
+    background-image: url("../icons/logo.svg"),
     linear-gradient(
             90deg,
             rgba(27, 156, 226, 1) 0%,
@@ -300,11 +300,11 @@ a.standard-button {
 }
 
 .add-location-button {
-    background-image: url("/weather-forecast/web/icons/add.svg");
+    background-image: url("../icons/add.svg");
 }
 
 .remove-location-button {
-    background-image: url("/weather-forecast/web/icons/remove.svg");
+    background-image: url("../icons/remove.svg");
 }
 
 .add-location-button:hover {
@@ -383,7 +383,7 @@ a.standard-button {
 /* Clear Sky */
 
 .clear-sky-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/clear_sky_day.svg"),
+    background-image: url("../icons/weather/day/clear_sky_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -396,7 +396,7 @@ div.clear-sky-day ~ .detailed-weather-info {
 }
 
 .clear-sky-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/clear_sky_night.svg"),
+    background-image: url("../icons/weather/night/clear_sky_night.svg"),
     linear-gradient(
             180deg,
             rgba(56, 33, 168, 1) 0%,
@@ -421,7 +421,7 @@ div.clear-sky-night ~ .detailed-weather-info {
 .light-shower-snow-day,
 .shower-snow-day,
 .heavy-shower-snow-day {
-    background-image: url("/weather-forecast/web/icons/weather/snow.svg"),
+    background-image: url("../icons/weather/snow.svg"),
     linear-gradient(
             180deg,
             rgba(255, 255, 255, 1) 0%,
@@ -454,7 +454,7 @@ div.heavy-shower-snow-day ~ .detailed-weather-info {
 .light-shower-snow-night,
 .shower-snow-night,
 .heavy-shower-snow-night {
-    background-image: url("/weather-forecast/web/icons/weather/snow.svg"),
+    background-image: url("../icons/weather/snow.svg"),
     linear-gradient(
             180deg,
             rgba(58, 35, 169, 1) 0%,
@@ -479,7 +479,7 @@ div.heavy-shower-snow-night ~ .detailed-weather-info {
 /* Few Clouds */
 
 .few-clouds-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/clouds/few_clouds_day.svg"),
+    background-image: url("../icons/weather/day/clouds/few_clouds_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -493,7 +493,7 @@ div.few-clouds-day ~ .detailed-weather-info {
 }
 
 .few-clouds-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/clouds/few_clouds_night.svg"),
+    background-image: url("../icons/weather/night/clouds/few_clouds_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -508,7 +508,7 @@ div.few-clouds-night ~ .detailed-weather-info {
 /* Scattered Clouds */
 
 .scattered-clouds-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/clouds/scattered_clouds_day.svg"),
+    background-image: url("../icons/weather/day/clouds/scattered_clouds_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -522,7 +522,7 @@ div.scattered-clouds-day ~ .detailed-weather-info {
 }
 
 .scattered-clouds-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/clouds/scattered_clouds_night.svg"),
+    background-image: url("../icons/weather/night/clouds/scattered_clouds_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -537,7 +537,7 @@ div.scattered-clouds-night ~ .detailed-weather-info {
 /* Broken Clouds */
 
 .broken-clouds-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/clouds/broken_clouds_day.svg"),
+    background-image: url("../icons/weather/day/clouds/broken_clouds_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -551,7 +551,7 @@ div.broken-clouds-day ~ .detailed-weather-info {
 }
 
 .broken-clouds-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/clouds/broken_clouds_night.svg"),
+    background-image: url("../icons/weather/night/clouds/broken_clouds_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -566,7 +566,7 @@ div.broken-clouds-night ~ .detailed-weather-info {
 /* Overcast Clouds */
 
 .overcast-clouds-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/clouds/overcast_clouds_day.svg"),
+    background-image: url("../icons/weather/day/clouds/overcast_clouds_day.svg"),
     linear-gradient(
             180deg,
             rgba(240, 240, 240, 1) 0%,
@@ -580,7 +580,7 @@ div.overcast-clouds-day ~ .detailed-weather-info {
 }
 
 .overcast-clouds-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/clouds/overcast_clouds_night.svg"),
+    background-image: url("../icons/weather/night/clouds/overcast_clouds_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -596,7 +596,7 @@ div.overcast-clouds-night ~ .detailed-weather-info {
 /* Light Rain */
 
 .light-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/light_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/light_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -610,7 +610,7 @@ div.light-rain-day ~ .detailed-weather-info {
 }
 
 .light-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/light_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/light_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -625,7 +625,7 @@ div.light-rain-night ~ .detailed-weather-info {
 /* Moderate Rain */
 
 .moderate-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/moderate_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/moderate_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -639,7 +639,7 @@ div.moderate-rain-day ~ .detailed-weather-info {
 }
 
 .moderate-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/moderate_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/moderate_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -654,7 +654,7 @@ div.moderate-rain-night ~ .detailed-weather-info {
 /* Heavy Intensity Rain */
 
 .heavy-intensity-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/heavy_intensity_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/heavy_intensity_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -668,7 +668,7 @@ div.heavy-intensity-rain-day ~ .detailed-weather-info {
 }
 
 .heavy-intensity-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/heavy_intensity_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/heavy_intensity_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -683,7 +683,7 @@ div.heavy-intensity-rain-night ~ .detailed-weather-info {
 /* Very Heavy Rain */
 
 .very-heavy-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/very_heavy_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/very_heavy_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -697,7 +697,7 @@ div.very-heavy-rain-day ~ .detailed-weather-info {
 }
 
 .very-heavy-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/very_heavy_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/very_heavy_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -712,7 +712,7 @@ div.very-heavy-rain-night ~ .detailed-weather-info {
 /* Extreme Rain */
 
 .extreme-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/extreme_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/extreme_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(255, 245, 206, 1) 0%,
@@ -726,7 +726,7 @@ div.extreme-rain-day ~ .detailed-weather-info {
 }
 
 .extreme-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/extreme_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/extreme_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 169, 1) 0%,
@@ -744,7 +744,7 @@ div.extreme-rain-night ~ .detailed-weather-info {
 .heavy-intensity-drizzle-day,
 .light-intensity-drizzle-rain-day,
 .drizzle-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/light_intensity_shower_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/light_intensity_shower_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -764,7 +764,7 @@ div.drizzle-rain-day ~ .detailed-weather-info {
 .heavy-intensity-drizzle-night,
 .light-intensity-drizzle-rain-night,
 .drizzle-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/light_intensity_shower_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/light_intensity_shower_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -785,7 +785,7 @@ div.drizzle-rain-night ~ .detailed-weather-info {
 .shower-rain-day,
 .heavy-intensity-drizzle-rain-day,
 .shower-rain-and-drizzle-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/shower_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/shower_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -803,7 +803,7 @@ div.shower-rain-and-drizzle-day ~ .detailed-weather-info {
 .shower-rain-night,
 .heavy-intensity-drizzle-rain-night,
 .shower-rain-and-drizzle-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/shower_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/shower_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -821,7 +821,7 @@ div.shower-rain-and-drizzle-night ~ .detailed-weather-info {
 /* Heavy Intensity Shower Rain */
 
 .heavy-intensity-shower-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/heavy_intensity_shower_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/heavy_intensity_shower_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -835,7 +835,7 @@ div.heavy-intensity-shower-rain-day ~ .detailed-weather-info {
 }
 
 .heavy-intensity-shower-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/heavy_intensity_shower_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/heavy_intensity_shower_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -854,7 +854,7 @@ div.heavy-intensity-shower-rain-night ~ .detailed-weather-info {
 .light-intensity-drizzle-day,
 .drizzle-day,
 .shower-drizzle-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/ragged_shower_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/ragged_shower_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -874,7 +874,7 @@ div.shower-drizzle-day ~ .detailed-weather-info {
 .light-intensity-drizzle-night,
 .drizzle-night,
 .shower-drizzle-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/ragged_shower_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/ragged_shower_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -893,7 +893,7 @@ div.shower-drizzle-night ~ .detailed-weather-info {
 /* Freezing Rain */
 
 .freezing-rain-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/rain/freezing_rain_day.svg"),
+    background-image: url("../icons/weather/day/rain/freezing_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -907,7 +907,7 @@ div.freezing-rain-day ~ .detailed-weather-info {
 }
 
 .freezing-rain-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/rain/freezing_rain_night.svg"),
+    background-image: url("../icons/weather/night/rain/freezing_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -926,7 +926,7 @@ div.freezing-rain-night ~ .detailed-weather-info {
 .thunderstorm-with-rain-day,
 .thunderstorm-with-light-drizzle-day,
 .thunderstorm-with-drizzle-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_with_rain_day.svg"),
+    background-image: url("../icons/weather/day/thunderstorm/thunderstorm_with_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -946,7 +946,7 @@ div.thunderstorm-with-drizzle-day ~ .detailed-weather-info {
 .thunderstorm-with-rain-night,
 .thunderstorm-with-light-drizzle-night,
 .thunderstorm-with-drizzle-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_with_rain_night.svg"),
+    background-image: url("../icons/weather/night/thunderstorm/thunderstorm_with_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -968,7 +968,7 @@ div.thunderstorm-with-drizzle-night ~ .detailed-weather-info {
 .thunderstorm-day,
 .heavy-thunderstorm-day,
 .ragged-thunderstorm-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_day.svg"),
+    background-image: url("../icons/weather/day/thunderstorm/thunderstorm_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -988,7 +988,7 @@ div.ragged-thunderstorm-day ~ .detailed-weather-info {
 .thunderstorm-night,
 .heavy-thunderstorm-night,
 .ragged-thunderstorm-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_night.svg"),
+    background-image: url("../icons/weather/night/thunderstorm/thunderstorm_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -1008,7 +1008,7 @@ div.ragged-thunderstorm-night ~ .detailed-weather-info {
 
 .thunderstorm-with-heavy-rain-day,
 .thunderstorm-with-heavy-drizzle-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_with_heavy_rain_day.svg"),
+    background-image: url("../icons/weather/day/thunderstorm/thunderstorm_with_heavy_rain_day.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -1024,7 +1024,7 @@ div.thunderstorm-with-heavy-drizzle-day ~ .detailed-weather-info {
 
 .thunderstorm-with-heavy-rain-night,
 .thunderstorm-with-heavy-drizzle-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_with_heavy_rain_night.svg"),
+    background-image: url("../icons/weather/night/thunderstorm/thunderstorm_with_heavy_rain_night.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -1043,7 +1043,7 @@ div.thunderstorm-with-heavy-drizzle-night ~ .detailed-weather-info {
 .mist-day,
 .haze-day,
 .fog-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/atmosphere/mist_day.svg"),
+    background-image: url("../icons/weather/day/atmosphere/mist_day.svg"),
     linear-gradient(
             180deg,
             rgb(175, 208, 223) 0%,
@@ -1061,7 +1061,7 @@ div.fog-day ~ .detailed-weather-info {
 .mist-night,
 .haze-night,
 .fog-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/atmosphere/mist_night.svg"),
+    background-image: url("../icons/weather/night/atmosphere/mist_night.svg"),
     linear-gradient(
             180deg,
             rgb(97, 81, 189) 0%,
@@ -1079,7 +1079,7 @@ div.fog-night ~ .detailed-weather-info {
 /* Smoke */
 
 .smoke-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/atmosphere/smoke_day.svg"),
+    background-image: url("../icons/weather/day/atmosphere/smoke_day.svg"),
     linear-gradient(
             180deg,
             rgb(175, 208, 223) 0%,
@@ -1093,7 +1093,7 @@ div.smoke-day ~ .detailed-weather-info {
 }
 
 .smoke-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/atmosphere/smoke_night.svg"),
+    background-image: url("../icons/weather/night/atmosphere/smoke_night.svg"),
     linear-gradient(
             180deg,
             rgb(97, 81, 189) 0%,
@@ -1111,7 +1111,7 @@ div.smoke-night ~ .detailed-weather-info {
 .sand-dust-whirls-day,
 .sand-day,
 .dust-day {
-    background-image: url("/weather-forecast/web/icons/weather/sand_whirls.svg"),
+    background-image: url("../icons/weather/sand_whirls.svg"),
     linear-gradient(
             180deg,
             rgb(175, 208, 223) 0%,
@@ -1129,7 +1129,7 @@ div.dust-day ~ .detailed-weather-info {
 .sand-dust-whirls-night,
 .sand-night,
 .dust-night {
-    background-image: url("/weather-forecast/web/icons/weather/sand_whirls.svg"),
+    background-image: url("../icons/weather/sand_whirls.svg"),
     linear-gradient(
             180deg,
             rgb(97, 81, 189) 0%,
@@ -1147,7 +1147,7 @@ div.dust-night ~ .detailed-weather-info {
 /* Squalls */
 
 .squalls-day {
-    background-image: url("/weather-forecast/web/icons/weather/squalls.svg"),
+    background-image: url("../icons/weather/squalls.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -1161,7 +1161,7 @@ div.squalls-day ~ .detailed-weather-info {
 }
 
 .squalls-night {
-    background-image: url("/weather-forecast/web/icons/weather/squalls.svg"),
+    background-image: url("../icons/weather/squalls.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -1177,7 +1177,7 @@ div.squalls-night ~ .detailed-weather-info {
 /* Tornado */
 
 .tornado-day {
-    background-image: url("/weather-forecast/web/icons/weather/tornado.svg"),
+    background-image: url("../icons/weather/tornado.svg"),
     linear-gradient(
             180deg,
             rgba(181, 181, 181, 0.25) 0%,
@@ -1191,7 +1191,7 @@ div.tornado-day ~ .detailed-weather-info {
 }
 
 .tornado-night {
-    background-image: url("/weather-forecast/web/icons/weather/tornado.svg"),
+    background-image: url("../icons/weather/tornado.svg"),
     linear-gradient(
             180deg,
             rgba(57, 34, 168, 1) 0%,
@@ -1207,7 +1207,7 @@ div.tornado-night ~ .detailed-weather-info {
 /* Volcanic Ash */
 
 .volcanic-ash-day {
-    background-image: url("/weather-forecast/web/icons/weather/volcanic_ash.svg"),
+    background-image: url("../icons/weather/volcanic_ash.svg"),
     linear-gradient(
             180deg,
             rgb(175, 208, 223) 0%,
@@ -1221,7 +1221,7 @@ div.volcanic-ash-day ~ .detailed-weather-info {
 }
 
 .volcanic-ash-night {
-    background-image: url("/weather-forecast/web/icons/weather/volcanic_ash.svg"),
+    background-image: url("../icons/weather/volcanic_ash.svg"),
     linear-gradient(
             180deg,
             rgb(97, 81, 189) 0%,
@@ -1237,7 +1237,7 @@ div.volcanic-ash-night ~ .detailed-weather-info {
 /* Unknown */
 
 .unknown-day {
-    background-image: url("/weather-forecast/web/icons/weather/day/unknown_day.svg"),
+    background-image: url("../icons/weather/day/unknown_day.svg"),
     linear-gradient(
             180deg,
             rgb(84, 165, 255) 0%,
@@ -1251,7 +1251,7 @@ div.unknown-day ~ .detailed-weather-info {
 }
 
 .unknown-night {
-    background-image: url("/weather-forecast/web/icons/weather/night/unknown_night.svg"),
+    background-image: url("../icons/weather/night/unknown_night.svg"),
     linear-gradient(
             180deg,
             rgb(114, 92, 255) 0%,
@@ -1261,5 +1261,5 @@ div.unknown-day ~ .detailed-weather-info {
 }
 
 div.unknown-night ~ .detailed-weather-info {
-    background-color: #A786FFFF;
+    background-color: #a786ffff;
 }
