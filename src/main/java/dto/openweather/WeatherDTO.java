@@ -15,6 +15,8 @@ public record WeatherDTO(
         String sunset) {
 
     public String getFullDescriptionWithHyphens() {
-        return description.replaceAll(" ", "-") + "-" + timeOfDay.getValue();
+        return description.getDescription()
+                .replaceAll("[\\s/]", "-") + "-" + timeOfDay.getValue();
+    }
     }
 }
