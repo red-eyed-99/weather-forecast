@@ -344,7 +344,7 @@ a.standard-button {
 
 .current-temp {
     position: absolute;
-    left: 50%;
+    left: 55%;
     top: 35%;
     margin: 0;
     font-size: 48px;
@@ -367,11 +367,15 @@ a.standard-button {
     font-weight: normal;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
 [class$="-night"] {
     color: #ffffff;
+}
+
+.temp-info {
+    margin: 0;
 }
 
 /* --- Main weather info icons and background styles --- */
@@ -404,6 +408,161 @@ div.clear-sky-night ~ .detailed-weather-info {
     background-color: #7f50c4;
 }
 
+/* Snow */
+
+.light-snow-day,
+.snow-day,
+.heavy-snow-day,
+.sleet-day,
+.light-shower-sleet-day,
+.shower-sleet-day,
+.light-rain-and-snow-day,
+.rain-and-snow-day,
+.light-shower-snow-day,
+.shower-snow-day,
+.heavy-shower-snow-day {
+    background-image: url("/weather-forecast/web/icons/weather/snow.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(199, 232, 253, 1) 100%
+    );
+}
+
+div.light-snow-day ~ .detailed-weather-info,
+div.snow-day ~ .detailed-weather-info,
+div.heavy-snow-day ~ .detailed-weather-info,
+div.sleet-day ~ .detailed-weather-info,
+div.light-shower-sleet-day ~ .detailed-weather-info,
+div.shower-sleet-day ~ .detailed-weather-info,
+div.light-rain-and-snow-day ~ .detailed-weather-info,
+div.rain-and-snow-day ~ .detailed-weather-info,
+div.light-shower-snow-day ~ .detailed-weather-info,
+div.shower-snow-day ~ .detailed-weather-info,
+div.heavy-shower-snow-day ~ .detailed-weather-info {
+    background-color: #c7e8fdff;
+}
+
+.light-snow-night,
+.snow-night,
+.heavy-snow-night,
+.sleet-night,
+.light-shower-sleet-night,
+.shower-sleet-night,
+.light-rain-and-snow-night,
+.rain-and-snow-night,
+.light-shower-snow-night,
+.shower-snow-night,
+.heavy-shower-snow-night {
+    background-image: url("/weather-forecast/web/icons/weather/snow.svg"),
+    linear-gradient(
+            180deg,
+            rgba(58, 35, 169, 1) 0%,
+            rgba(95, 163, 205, 1) 100%
+    );
+}
+
+div.light-snow-night ~ .detailed-weather-info,
+div.snow-night ~ .detailed-weather-info,
+div.heavy-snow-night ~ .detailed-weather-info,
+div.sleet-night ~ .detailed-weather-info,
+div.light-shower-sleet-night ~ .detailed-weather-info,
+div.shower-sleet-night ~ .detailed-weather-info,
+div.light-rain-and-snow-night ~ .detailed-weather-info,
+div.rain-and-snow-night ~ .detailed-weather-info,
+div.light-shower-snow-night ~ .detailed-weather-info,
+div.shower-snow-night ~ .detailed-weather-info,
+div.heavy-shower-snow-night ~ .detailed-weather-info {
+    background-color: #5fa3cdff;
+}
+
+/* Few Clouds */
+
+.few-clouds-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/clouds/few_clouds_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(196, 235, 252, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.few-clouds-day ~ .detailed-weather-info {
+    background-color: #c4ebfcff;
+}
+
+.few-clouds-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/clouds/few_clouds_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(97, 64, 147, 1) 100%
+    );
+}
+
+div.few-clouds-night ~ .detailed-weather-info {
+    background-color: #614093ff;
+}
+
+/* Scattered Clouds */
+
+.scattered-clouds-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/clouds/scattered_clouds_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(182, 220, 236, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.scattered-clouds-day ~ .detailed-weather-info {
+    background-color: #b6dcecff;
+}
+
+.scattered-clouds-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/clouds/scattered_clouds_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(80, 52, 122, 1) 100%
+    );
+}
+
+div.scattered-clouds-night ~ .detailed-weather-info {
+    background-color: #50347aff;
+}
+
+/* Broken Clouds */
+
+.broken-clouds-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/clouds/broken_clouds_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 0;
+}
+
+div.broken-clouds-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.broken-clouds-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/clouds/broken_clouds_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.broken-clouds-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
 /* Overcast Clouds */
 
 .overcast-clouds-day {
@@ -413,7 +572,7 @@ div.clear-sky-night ~ .detailed-weather-info {
             rgba(240, 240, 240, 1) 0%,
             rgba(150, 173, 182, 1) 100%
     );
-    background-position: 35% -15%;
+    background-position: 35% -10%;
 }
 
 div.overcast-clouds-day ~ .detailed-weather-info {
@@ -432,4 +591,675 @@ div.overcast-clouds-day ~ .detailed-weather-info {
 
 div.overcast-clouds-night ~ .detailed-weather-info {
     background-color: #221535ff;
+}
+
+/* Light Rain */
+
+.light-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/light_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.light-rain-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.light-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/light_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.light-rain-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
+/* Moderate Rain */
+
+.moderate-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/moderate_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.moderate-rain-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.moderate-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/moderate_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.moderate-rain-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
+/* Heavy Intensity Rain */
+
+.heavy-intensity-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/heavy_intensity_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.heavy-intensity-rain-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.heavy-intensity-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/heavy_intensity_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.heavy-intensity-rain-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
+/* Very Heavy Rain */
+
+.very-heavy-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/very_heavy_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.very-heavy-rain-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.very-heavy-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/very_heavy_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.very-heavy-rain-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
+/* Extreme Rain */
+
+.extreme-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/extreme_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 245, 206, 1) 0%,
+            rgba(169, 204, 219, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.extreme-rain-day ~ .detailed-weather-info {
+    background-color: #a9ccdbff;
+}
+
+.extreme-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/extreme_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 169, 1) 0%,
+            rgba(49, 31, 76, 1) 100%
+    );
+}
+
+div.extreme-rain-night ~ .detailed-weather-info {
+    background-color: #311f4cff;
+}
+
+/* Light Intensity Shower Rain, Heavy Intensity Drizzle, Light Intensity Drizzle Rain, Drizzle Rain */
+
+.light-intensity-shower-rain-day,
+.heavy-intensity-drizzle-day,
+.light-intensity-drizzle-rain-day,
+.drizzle-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/light_intensity_shower_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.light-intensity-shower-rain-day ~ .detailed-weather-info,
+div.heavy-intensity-drizzle-day ~ .detailed-weather-info,
+div.light-intensity-drizzle-rain-day ~ .detailed-weather-info,
+div.drizzle-rain-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.light-intensity-shower-rain-night,
+.heavy-intensity-drizzle-night,
+.light-intensity-drizzle-rain-night,
+.drizzle-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/light_intensity_shower_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.light-intensity-shower-rain-night ~ .detailed-weather-info,
+div.heavy-intensity-drizzle-night ~ .detailed-weather-info,
+div.light-intensity-drizzle-rain-night ~ .detailed-weather-info,
+div.drizzle-rain-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Shower Rain, Heavy Intensity Drizzle Rain, Shower Rain And Drizzle */
+
+.shower-rain-day,
+.heavy-intensity-drizzle-rain-day,
+.shower-rain-and-drizzle-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/shower_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.shower-rain-day ~ .detailed-weather-info,
+div.heavy-intensity-drizzle-rain-day ~ .detailed-weather-info,
+div.shower-rain-and-drizzle-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.shower-rain-night,
+.heavy-intensity-drizzle-rain-night,
+.shower-rain-and-drizzle-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/shower_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.shower-rain-night ~ .detailed-weather-info,
+div.heavy-intensity-drizzle-rain-night ~ .detailed-weather-info,
+div.shower-rain-and-drizzle-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Heavy Intensity Shower Rain */
+
+.heavy-intensity-shower-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/heavy_intensity_shower_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.heavy-intensity-shower-rain-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.heavy-intensity-shower-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/heavy_intensity_shower_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.heavy-intensity-shower-rain-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Ragged Shower Rain, Light Intensity Drizzle, Drizzle, Shower Drizzle */
+
+.ragged-shower-rain-day,
+.light-intensity-drizzle-day,
+.drizzle-day,
+.shower-drizzle-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/ragged_shower_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.ragged-shower-rain-day ~ .detailed-weather-info,
+div.light-intensity-drizzle-day ~ .detailed-weather-info,
+div.drizzle-day ~ .detailed-weather-info,
+div.shower-drizzle-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.ragged-shower-rain-night,
+.light-intensity-drizzle-night,
+.drizzle-night,
+.shower-drizzle-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/ragged_shower_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% -10%;
+}
+
+div.ragged-shower-rain-night ~ .detailed-weather-info,
+div.light-intensity-drizzle-night ~ .detailed-weather-info,
+div.drizzle-night ~ .detailed-weather-info,
+div.shower-drizzle-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Freezing Rain */
+
+.freezing-rain-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/rain/freezing_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.freezing-rain-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.freezing-rain-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/rain/freezing_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.freezing-rain-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Thunderstorm With Light Rain, Thunderstorm With Rain,  Thunderstorm With Light Drizzle, Thunderstorm With Drizzle */
+
+.thunderstorm-with-light-rain-day,
+.thunderstorm-with-rain-day,
+.thunderstorm-with-light-drizzle-day,
+.thunderstorm-with-drizzle-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_with_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.thunderstorm-with-light-rain-day ~ .detailed-weather-info,
+div.thunderstorm-with-rain-day ~ .detailed-weather-info,
+div.thunderstorm-with-light-drizzle-day ~ .detailed-weather-info,
+div.thunderstorm-with-drizzle-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.thunderstorm-with-light-rain-night,
+.thunderstorm-with-rain-night,
+.thunderstorm-with-light-drizzle-night,
+.thunderstorm-with-drizzle-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_with_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.thunderstorm-with-light-rain-night ~ .detailed-weather-info,
+div.thunderstorm-with-rain-night ~ .detailed-weather-info,
+div.thunderstorm-with-light-drizzle-night ~ .detailed-weather-info,
+div.thunderstorm-with-drizzle-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Light Thunderstorm, Thunderstorm, Heavy Thunderstorm, Ragged Thunderstorm */
+
+.light-thunderstorm-day,
+.thunderstorm-day,
+.heavy-thunderstorm-day,
+.ragged-thunderstorm-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.light-thunderstorm-day ~ .detailed-weather-info,
+div.thunderstorm-day ~ .detailed-weather-info,
+div.heavy-thunderstorm-day ~ .detailed-weather-info,
+div.ragged-thunderstorm-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.light-thunderstorm-night,
+.thunderstorm-night,
+.heavy-thunderstorm-night,
+.ragged-thunderstorm-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.light-thunderstorm-night ~ .detailed-weather-info,
+div.thunderstorm-night ~ .detailed-weather-info,
+div.heavy-thunderstorm-night ~ .detailed-weather-info,
+div.ragged-thunderstorm-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Thunderstorm With Heavy Rain, Thunderstorm With Heavy Drizzle */
+
+.thunderstorm-with-heavy-rain-day,
+.thunderstorm-with-heavy-drizzle-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/thunderstorm/thunderstorm_with_heavy_rain_day.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.thunderstorm-with-heavy-rain-day ~ .detailed-weather-info,
+div.thunderstorm-with-heavy-drizzle-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.thunderstorm-with-heavy-rain-night,
+.thunderstorm-with-heavy-drizzle-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/thunderstorm/thunderstorm_with_heavy_rain_night.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.thunderstorm-with-heavy-rain-night ~ .detailed-weather-info,
+div.thunderstorm-with-heavy-drizzle-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Mist, Haze, Fog */
+
+.mist-day,
+.haze-day,
+.fog-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/atmosphere/mist_day.svg"),
+    linear-gradient(
+            180deg,
+            rgb(175, 208, 223) 0%,
+            rgb(221, 229, 239) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.mist-day ~ .detailed-weather-info,
+div.haze-day ~ .detailed-weather-info,
+div.fog-day ~ .detailed-weather-info {
+    background-color: #dde5efff;
+}
+
+.mist-night,
+.haze-night,
+.fog-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/atmosphere/mist_night.svg"),
+    linear-gradient(
+            180deg,
+            rgb(97, 81, 189) 0%,
+            rgb(127, 114, 165) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.mist-night ~ .detailed-weather-info,
+div.haze-night ~ .detailed-weather-info,
+div.fog-night ~ .detailed-weather-info {
+    background-color: #7f72a5ff;
+}
+
+/* Smoke */
+
+.smoke-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/atmosphere/smoke_day.svg"),
+    linear-gradient(
+            180deg,
+            rgb(175, 208, 223) 0%,
+            rgb(166, 173, 181) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.smoke-day ~ .detailed-weather-info {
+    background-color: #a6adb5ff;
+}
+
+.smoke-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/atmosphere/smoke_night.svg"),
+    linear-gradient(
+            180deg,
+            rgb(97, 81, 189) 0%,
+            rgb(89, 80, 117) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.smoke-night ~ .detailed-weather-info {
+    background-color: #595075ff;
+}
+
+/* Sand/Dust Whirls, Sand, Dust */
+
+.sand-dust-whirls-day,
+.sand-day,
+.dust-day {
+    background-image: url("/weather-forecast/web/icons/weather/sand_whirls.svg"),
+    linear-gradient(
+            180deg,
+            rgb(175, 208, 223) 0%,
+            rgb(255, 245, 202) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.sand-dust-whirls-day ~ .detailed-weather-info,
+div.sand-day ~ .detailed-weather-info,
+div.dust-day ~ .detailed-weather-info {
+    background-color: #fff5caff;
+}
+
+.sand-dust-whirls-night,
+.sand-night,
+.dust-night {
+    background-image: url("/weather-forecast/web/icons/weather/sand_whirls.svg"),
+    linear-gradient(
+            180deg,
+            rgb(97, 81, 189) 0%,
+            rgb(161, 154, 127) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.sand-dust-whirls-night ~ .detailed-weather-info,
+div.sand-night ~ .detailed-weather-info,
+div.dust-night ~ .detailed-weather-info {
+    background-color: #a19a7fff;
+}
+
+/* Squalls */
+
+.squalls-day {
+    background-image: url("/weather-forecast/web/icons/weather/squalls.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.squalls-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.squalls-night {
+    background-image: url("/weather-forecast/web/icons/weather/squalls.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.squalls-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Tornado */
+
+.tornado-day {
+    background-image: url("/weather-forecast/web/icons/weather/tornado.svg"),
+    linear-gradient(
+            180deg,
+            rgba(181, 181, 181, 0.25) 0%,
+            rgba(150, 173, 182, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.tornado-day ~ .detailed-weather-info {
+    background-color: #96adb6ff;
+}
+
+.tornado-night {
+    background-image: url("/weather-forecast/web/icons/weather/tornado.svg"),
+    linear-gradient(
+            180deg,
+            rgba(57, 34, 168, 1) 0%,
+            rgba(34, 21, 53, 1) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.tornado-night ~ .detailed-weather-info {
+    background-color: #221535ff;
+}
+
+/* Volcanic Ash */
+
+.volcanic-ash-day {
+    background-image: url("/weather-forecast/web/icons/weather/volcanic_ash.svg"),
+    linear-gradient(
+            180deg,
+            rgb(175, 208, 223) 0%,
+            rgb(166, 173, 181) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.volcanic-ash-day ~ .detailed-weather-info {
+    background-color: #a6adb5ff;
+}
+
+.volcanic-ash-night {
+    background-image: url("/weather-forecast/web/icons/weather/volcanic_ash.svg"),
+    linear-gradient(
+            180deg,
+            rgb(97, 81, 189) 0%,
+            rgb(89, 80, 117) 100%
+    );
+    background-position: 35% 5%;
+}
+
+div.volcanic-ash-night ~ .detailed-weather-info {
+    background-color: #595075ff;
+}
+
+/* Unknown */
+
+.unknown-day {
+    background-image: url("/weather-forecast/web/icons/weather/day/unknown_day.svg"),
+    linear-gradient(
+            180deg,
+            rgb(84, 165, 255) 0%,
+            rgb(176, 209, 248) 100%
+    );
+    background-position: 35% -5%;
+}
+
+div.unknown-day ~ .detailed-weather-info {
+    background-color: #b0d1f8ff;
+}
+
+.unknown-night {
+    background-image: url("/weather-forecast/web/icons/weather/night/unknown_night.svg"),
+    linear-gradient(
+            180deg,
+            rgb(114, 92, 255) 0%,
+            rgb(167, 134, 255) 100%
+    );
+    background-position: 35% -5%;
+}
+
+div.unknown-night ~ .detailed-weather-info {
+    background-color: #A786FFFF;
 }
