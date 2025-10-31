@@ -35,20 +35,20 @@
             <div th:replace="~{fragments/weather-card/detailed-weather-info}"></div>
         </div>
     </div>
-    <ul class="paginator-items" th:if="${pageInfo != null}" th:object="${pageInfo}">
+    <ul class="paginator-items" th:if="${pageInfo != null and pageInfo.totalPages() > 1}" th:object="${pageInfo}">
 
         <li class="paginator-item arrow" th:if="${pageInfo.previousBlockPageNumber() > 0}">
-            <a th:href="@{|/?page=${pageInfo.previousBlockPageNumber()}|}"><-</a>
+            <a th:href="@{|/?page=${pageInfo.previousBlockPageNumber()}|}">◀</a>
         </li>
 
         <li th:each="pageNumber : ${pageInfo.pageNumbers()}"
-            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' current-page' : ''}">
+            th:classappend="'paginator-item' + ${pageInfo.currentPage() == pageNumber ? ' paginator-current-page' : ''}">
 
             <a th:href="@{|/?page=${pageNumber}|}" th:text="${pageNumber}"></a>
         </li>
 
         <li class="paginator-item arrow" th:if="${pageInfo.nextBlockPageNumber() > 0}">
-            <a th:href="@{|/?page=${pageInfo.nextBlockPageNumber()}|}">-></a>
+            <a th:href="@{|/?page=${pageInfo.nextBlockPageNumber()}|}">▶</a>
         </li>
     </ul>
 </main>
