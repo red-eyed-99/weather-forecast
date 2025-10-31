@@ -250,6 +250,12 @@ a.standard-button {
     padding-bottom: 0;
 }
 
+.added-locations-placeholder {
+    font-size: 24px;
+    text-align: center;
+    color: #d3d3d3;
+}
+
 .weather-card {
     width: 366px;
     margin-left: auto;

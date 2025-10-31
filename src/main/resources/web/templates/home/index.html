@@ -14,6 +14,10 @@
     <form th:replace="~{fragments/forms/search-location-form}"></form>
     <p th:replace="~{fragments/error/single-error-block}"></p>
 
+    <p class="added-locations-placeholder" th:if="${locationsWeather == null and errorMessage == null}">
+        Your added locations will be here.
+    </p>
+
     <div class="weather-cards-container" th:if="${locationsWeather != null}" th:object="${locationsWeather}">
 
         <div class="weather-card" th:each="locationWeather : ${locationsWeather}"
