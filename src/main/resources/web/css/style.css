@@ -256,6 +256,18 @@ a.standard-button {
     color: #d3d3d3;
 }
 
+.weather-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(366px, 1fr));
+    gap: 80px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 .weather-card {
     width: 366px;
     margin-left: auto;
@@ -436,12 +448,138 @@ a.standard-button {
     );
 }
 
+.beaufort-points-0 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_0.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-1 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_1.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-2 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_2.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-3 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_3.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-4 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_4.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-5 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_5.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-6 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_6.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-7 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_7.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-8 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_8.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-9 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_9.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-10 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_10.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-11 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_11.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.beaufort-points-12 {
+    background-image: url("../icons/weather/wind/beaufort_scale/beaufort_12.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
+    );
+}
+
 .humidity-info {
     background-image: url("../icons/humidity.svg"),
     linear-gradient(
         180deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(239, 239, 239, 1) 100%
+    );
+}
+
+.visibility-info {
+    background-image: url("../icons/visibility.svg"),
+    linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(239, 239, 239, 1) 100%
     );
 }
 
