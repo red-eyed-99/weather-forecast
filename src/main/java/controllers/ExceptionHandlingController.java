@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -46,6 +47,11 @@ public class ExceptionHandlingController {
         model.addAttribute(ERROR_MESSAGE, message);
 
         return SEARCH_LOCATIONS;
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public void handleResponseStatusException(ResponseStatusException exception) {
+        throw exception;
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
