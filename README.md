@@ -26,12 +26,14 @@ Application functionality:
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/f7e069fd-8f84-442a-9ee4-5eaa8459345d" /> | Hibernate | 6.6.13.Final |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/9a9a44fc-3e41-4b74-a657-844d2d99b479" /> | MySql     | 9.3.0        |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/c2afb61b-498b-409f-bd20-b60f52f44f43" /> | Flyway    | 11.8.1       |
+| <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/d7d3da04-fe25-4e5b-9080-dc314a42fcc1" /> | H2        | 2.3.232      |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/8e306c25-eecf-431e-9834-c0d564a37dfc" /> | JUnit     | 5.13.0       |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/b923e76f-4dcf-4f76-8d7d-a6bcd5a7e828" /> | Mockito   | 5.14.2       |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/4c3855ae-aff4-4788-9417-08bd57bbd3b8" /> | Lombok    | 1.18.38      |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/fa41f9ef-d323-4ad3-88c6-b4fa8854b465" /> | Mapstruct | 1.6.3        |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/b8f8b7f5-cbe8-4ce6-8838-dd723a71c7ea" /> | Maven     | 3.9.9        |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/72b76346-2f93-4d59-9ebc-0a2887b27c96" /> | Tomcat    | 11           |
+| <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/0d313359-1c16-4d50-84fc-db09249a3d7c" /> | Thymeleaf | 3.1.3.RELEASE|
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/02fbbbfe-7f5d-4111-b4ca-d30ed90bbc30" /> | HTML      | 5            |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/3fcb1bdb-2400-443d-a074-7c3fa0062164" /> | CSS       | 3            |
 | <img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/4dec4a2e-ec05-4a5e-a089-3c25b47c5468" /> | JS        | ES6+         |
